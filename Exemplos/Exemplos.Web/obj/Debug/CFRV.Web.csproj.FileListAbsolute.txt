@@ -1,0 +1,157 @@
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\wkhtmltopdf.exe
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\CFRV.Web.dll.config
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\CFRV.Web.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\CFRV.Web.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\CsQuery.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Dapper.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\EPPlus.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\FluentMigrator.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\FluentMigrator.Runner.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\MsieJavaScriptEngine.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Newtonsoft.Json.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\NUglify.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Core.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Data.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Data.Entity.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Services.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Web.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\StackExchange.Exceptional.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.Helpers.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.Mvc.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.Razor.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.WebPages.Deployment.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.WebPages.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.WebPages.Razor.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\CsQuery.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Dapper.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\EPPlus.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\FluentMigrator.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\FluentMigrator.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\FluentMigrator.Runner.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\MsieJavaScriptEngine.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Newtonsoft.Json.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\NUglify.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Core.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Core.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Data.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Data.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Data.Entity.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Services.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\Serenity.Web.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\StackExchange.Exceptional.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.Helpers.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.Mvc.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.Razor.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.WebPages.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.WebPages.Deployment.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\System.Web.WebPages.Razor.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\bin\ru-ru\MsieJavaScriptEngine.resources.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\obj\Debug\CFRV.Web.csprojResolveAssemblyReference.cache
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\obj\Debug\CFRV.Web.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\CFRV\CFRV\CFRV.Web\obj\Debug\CFRV.Web.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\wkhtmltopdf.exe
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\CFRV.Web.dll.config
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\CFRV.Web.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\CFRV.Web.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\CsQuery.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Dapper.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\EPPlus.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\FluentMigrator.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\FluentMigrator.Runner.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\MsieJavaScriptEngine.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Newtonsoft.Json.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\NUglify.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Core.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Data.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Data.Entity.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Services.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Web.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\StackExchange.Exceptional.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.Helpers.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.Mvc.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.Razor.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Deployment.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Razor.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\CsQuery.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Dapper.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\EPPlus.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\FluentMigrator.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\FluentMigrator.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\FluentMigrator.Runner.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\MsieJavaScriptEngine.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Newtonsoft.Json.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\NUglify.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Core.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Core.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Data.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Data.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Data.Entity.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Services.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\Serenity.Web.pdb
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\StackExchange.Exceptional.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.Helpers.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.Mvc.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.Razor.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Deployment.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Razor.xml
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\bin\ru-ru\MsieJavaScriptEngine.resources.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.csprojResolveAssemblyReference.cache
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.dll
+C:\DESENVOLVIMENTO\BITBUCKET\GESTAO\CFRV\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.csproj.CoreCompileInputs.cache
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\wkhtmltopdf.exe
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\CFRV.Web.dll.config
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\CFRV.Web.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\CFRV.Web.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\CsQuery.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Dapper.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\EPPlus.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\FluentMigrator.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\FluentMigrator.Runner.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\MsieJavaScriptEngine.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Newtonsoft.Json.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\NUglify.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Core.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Data.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Data.Entity.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Services.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Web.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\StackExchange.Exceptional.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.Helpers.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.Mvc.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.Razor.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Deployment.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Razor.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\CsQuery.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Dapper.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\EPPlus.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\FluentMigrator.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\FluentMigrator.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\FluentMigrator.Runner.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\MsieJavaScriptEngine.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Newtonsoft.Json.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\NUglify.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Core.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Core.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Data.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Data.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Data.Entity.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Services.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\Serenity.Web.pdb
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\StackExchange.Exceptional.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.Helpers.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.Mvc.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.Razor.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Deployment.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\System.Web.WebPages.Razor.xml
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\bin\ru-ru\MsieJavaScriptEngine.resources.dll
+D:\Users\Edson\Documents\visual studio 2017\cfrv\fontes\CFRV\CFRV.Web\obj\Debug\CFRV.Web.csprojResolveAssemblyReference.cache

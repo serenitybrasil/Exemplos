@@ -1,0 +1,21 @@
+﻿@model Exemplos.Membership.ActivateEmailModel
+
+<html>
+<head>
+    <title>Activate your Exemplos account</title>
+</head>
+<body>
+    <p>@Model.DisplayName,</p>
+
+    <p>We received a request to create a new account on Exemplos with your e-mail address.</p>
+
+    <p>Click the link below to activate your account:</p>
+
+    <p><a href="@Model.ActivateLink">@Model.ActivateLink</a></p>
+
+    <p>If it wasn't you who requested this, you can ignore this email.</p>
+
+    Thanks,
+    The "Exemplos" Team
+</body>
+</html>

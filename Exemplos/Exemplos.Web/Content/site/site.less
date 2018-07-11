@@ -1,0 +1,160 @@
+﻿@import "site.theme.less";
+@import "site.mixins.less";
+@import "site.administration.less";
+@import "site.membership.less";
+
+/*Para quebra de página na impressão*/
+@media print {
+    .report-print-break {
+        page-break-before: always;
+    }
+
+    .print-row {
+        padding-top: 5px;
+    }
+
+    .print-mark {
+        position: relative;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+}
+/* Tamanho da Foto Para Impressao*/
+.foto-paciente {
+    width: 150px;
+}
+/*
+    CSS JÁ FORMATADOS
+*/
+.ui-widget-overlay {
+    opacity: 0.5;
+}
+
+.s-Clinica-PacientesDialog {
+    > .size {
+        width: 850px;
+        height: 650px;
+    }
+
+    .caption {
+        width: 130px;
+    }
+
+    @media (min-width: 768px) {
+        .field.Matricula, .field.StatusId, .field.CarteiraIdentidade, .field.CPF, .field.SexoId,
+        .field.CNS, .field.NotaFiscalBairro, .field.NotaFiscalCidade, .field.NotaFiscalEstadoId,
+        .field.Foto, .field.DataFoto {
+            flex: auto;
+            min-width: 50%;
+        }
+
+        .field.PacienteIdControlMedic, .field.PacienteIdGestorMedico,
+        .field.DataCadastro, .field.DataUltimaAtualizacao {
+            flex: auto;
+            min-width: 50%;
+
+            .caption {
+                width: 90px;
+            }
+        }
+
+        .field.DataNascimento, .field.Especial {
+            flex: auto;
+            min-width: 50%;
+
+            .caption {
+                width: 150px;
+            }
+        }
+    }
+}
+
+
+.s-Clinica-EnderecosDialog,
+.s-Clinica-EnderecosEditorDialog {
+    > .size {
+        width: 650px;
+    }
+
+    .caption {
+        width: 150px;
+    }
+
+    @media (min-width: 768px) {
+        .field.Numero, .field.Complemento, .field.Bairro, .field.Pais, .field.Cep,
+        .field.Latitude, .field.Longitude {
+            flex: auto;
+            min-width: 50%;
+        }
+
+        .field.Cidade, .field.CodigoIbgeCidade,
+        .field.Estado, .field.CodigoIbgeEstado {
+            flex: auto;
+            min-width: 33%;
+
+            .caption {
+                width: 90px;
+            }
+        }
+    }
+}
+
+.s-Clinica-PacientesPacientesConveniosDialog,
+.s-Clinica-PacientesConveniosDialog {
+    > .size {
+        width: 800px;
+    }
+
+    .caption {
+        width: 150px;
+    }
+
+    @media (min-width: 768px) {
+        .field.ConvenioPrincipal, .field.DescricaoPlano, .field.Carteirinha,
+        .field.DataValidadeCarteirinha, .field.DataCadastro,
+        .field.DataUltimaAtualizacao {
+            flex: auto;
+            min-width: 50%;
+        }
+    }
+}
+
+
+.s-Clinica-PacientesPacientesEmissaoNfDialog,
+.s-Clinica-PacientesEmissaoNfDialog {
+    > .size {
+        width: 650px;
+    }
+
+    .caption {
+        width: 150px;
+    }
+
+    @media (min-width: 768px) {
+        .field.Numero, .field.Complemento, .field.Bairro, .field.Pais, .field.Cep,
+        .field.Padrao, .field.NomeResponsavel
+         {
+            flex: auto;
+            min-width: 50%;
+        }
+
+        .field.Cidade, .field.CodigoIbgeCidade,
+        .field.Estado, .field.CodigoIbgeEstado {
+            flex: auto;
+            min-width: 33%;
+
+            .caption {
+                width: 90px;
+            }
+        }
+    }
+}
+
+
+
+
+
+/*
+    CSS AUTO GERADOS, PRECISANDO FORMATAR !!!
+*/

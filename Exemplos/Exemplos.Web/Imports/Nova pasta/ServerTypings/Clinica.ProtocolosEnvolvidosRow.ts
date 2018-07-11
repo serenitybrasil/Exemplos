@@ -1,0 +1,166 @@
+﻿namespace Exemplos.Clinica {
+    export interface ProtocolosEnvolvidosRow {
+        ProtocoloEnvolvidoId?: number;
+        ProtocoloId?: number;
+        TipoEnvolvimentoId?: number;
+        ProfissionalId?: number;
+        PacienteId?: number;
+        FuncionarioId?: number;
+        FornecedorId?: number;
+        Protocolo?: string;
+        ProtocoloTipoProtocoloId?: number;
+        ProtocoloConvenioId?: number;
+        ProtocoloResponsável?: string;
+        ProtocoloAssunto?: string;
+        ProtocoloDataEnvio?: string;
+        ProtocoloDataRetorno?: string;
+        ProtocoloResolvido?: boolean;
+        ProtocoloDataResolvido?: string;
+        ProtocoloDecisaoTomada?: string;
+        TipoEnvolvimentoDescricao?: string;
+        ProfissionalIdAtivo?: boolean;
+        ProfissionalDataInicio?: string;
+        ProfissionalDataFim?: string;
+        ProfissionalMotivoEncerramento?: string;
+        Profissional?: string;
+        ProfissionalPai?: string;
+        ProfissionalMae?: string;
+        ProfissionalSexoId?: number;
+        ProfissionalDataNascimento?: string;
+        ProfissionalEstadoCivilId?: number;
+        ProfissionalCarteiraIdentidade?: string;
+        ProfissionalCpf?: string;
+        ProfissionalCnes?: string;
+        ProfissionalTipoProfissionalId?: number;
+        ProfissionalConselhoProfissionalId?: number;
+        ProfissionalNumeroConselho?: string;
+        ProfissionalUfConselhoProfissional?: string;
+        ProfissionalCbosid?: number;
+        ProfissionalProntuarioSigiloso?: boolean;
+        ProfissionalObservacao?: string;
+        ProfissionalPessoaJuridica?: boolean;
+        ProfissionalCnpj?: string;
+        ProfissionalDataInicioContrato?: string;
+        ProfissionalDataFimContrato?: string;
+        ProfissionalMotivoEncerramentoContrato?: string;
+        PacienteDataCadastro?: string;
+        PacienteDataUltimaAtualizacao?: string;
+        PacienteMatricula?: string;
+        PacienteStatusId?: number;
+        Paciente?: string;
+        PacienteEspecial?: boolean;
+        PacientePai?: string;
+        PacienteMae?: string;
+        PacienteSexoId?: number;
+        PacienteDataNascimento?: string;
+        PacienteCns?: string;
+        PacienteCarteiraIdentidade?: string;
+        PacienteCpf?: string;
+        PacienteObservacao?: string;
+        PacienteDisturbiosAssociados?: string;
+        PacienteResponsavel?: string;
+        PacienteNotaFiscalTerceiro?: boolean;
+        PacienteNotaFiscalNome?: string;
+        PacienteNotaFiscalCpf?: string;
+        PacienteNotaFiscalCnpj?: string;
+        PacienteNotaFiscalEndereco?: string;
+        PacienteNotaFiscalNumero?: string;
+        PacienteNotaFiscalBairro?: string;
+        PacienteNotaFiscalCidade?: string;
+        PacienteNotaFiscalEstadoId?: string;
+        PacienteNotaFiscalEmail?: string;
+        PacienteFoto?: string;
+        PacienteDataFoto?: string;
+        PacientePacienteIdControlMedic?: number;
+        PacientePacienteIdGestorMedico?: number;
+    }
+
+    export namespace ProtocolosEnvolvidosRow {
+        export const idProperty = 'ProtocoloEnvolvidoId';
+        export const localTextPrefix = 'Clinica.ProtocolosEnvolvidos';
+        export const lookupKey = 'Clinica.ProtocolosEnvolvidos';
+
+        export function getLookup(): Q.Lookup<ProtocolosEnvolvidosRow> {
+            return Q.getLookup<ProtocolosEnvolvidosRow>('Clinica.ProtocolosEnvolvidos');
+        }
+
+        export namespace Fields {
+            export declare const ProtocoloEnvolvidoId: string;
+            export declare const ProtocoloId: string;
+            export declare const TipoEnvolvimentoId: string;
+            export declare const ProfissionalId: string;
+            export declare const PacienteId: string;
+            export declare const FuncionarioId: string;
+            export declare const FornecedorId: string;
+            export declare const Protocolo: string;
+            export declare const ProtocoloTipoProtocoloId: string;
+            export declare const ProtocoloConvenioId: string;
+            export declare const ProtocoloResponsável: string;
+            export declare const ProtocoloAssunto: string;
+            export declare const ProtocoloDataEnvio: string;
+            export declare const ProtocoloDataRetorno: string;
+            export declare const ProtocoloResolvido: string;
+            export declare const ProtocoloDataResolvido: string;
+            export declare const ProtocoloDecisaoTomada: string;
+            export declare const TipoEnvolvimentoDescricao: string;
+            export declare const ProfissionalIdAtivo: string;
+            export declare const ProfissionalDataInicio: string;
+            export declare const ProfissionalDataFim: string;
+            export declare const ProfissionalMotivoEncerramento: string;
+            export declare const Profissional: string;
+            export declare const ProfissionalPai: string;
+            export declare const ProfissionalMae: string;
+            export declare const ProfissionalSexoId: string;
+            export declare const ProfissionalDataNascimento: string;
+            export declare const ProfissionalEstadoCivilId: string;
+            export declare const ProfissionalCarteiraIdentidade: string;
+            export declare const ProfissionalCpf: string;
+            export declare const ProfissionalCnes: string;
+            export declare const ProfissionalTipoProfissionalId: string;
+            export declare const ProfissionalConselhoProfissionalId: string;
+            export declare const ProfissionalNumeroConselho: string;
+            export declare const ProfissionalUfConselhoProfissional: string;
+            export declare const ProfissionalCbosid: string;
+            export declare const ProfissionalProntuarioSigiloso: string;
+            export declare const ProfissionalObservacao: string;
+            export declare const ProfissionalPessoaJuridica: string;
+            export declare const ProfissionalCnpj: string;
+            export declare const ProfissionalDataInicioContrato: string;
+            export declare const ProfissionalDataFimContrato: string;
+            export declare const ProfissionalMotivoEncerramentoContrato: string;
+            export declare const PacienteDataCadastro: string;
+            export declare const PacienteDataUltimaAtualizacao: string;
+            export declare const PacienteMatricula: string;
+            export declare const PacienteStatusId: string;
+            export declare const Paciente: string;
+            export declare const PacienteEspecial: string;
+            export declare const PacientePai: string;
+            export declare const PacienteMae: string;
+            export declare const PacienteSexoId: string;
+            export declare const PacienteDataNascimento: string;
+            export declare const PacienteCns: string;
+            export declare const PacienteCarteiraIdentidade: string;
+            export declare const PacienteCpf: string;
+            export declare const PacienteObservacao: string;
+            export declare const PacienteDisturbiosAssociados: string;
+            export declare const PacienteResponsavel: string;
+            export declare const PacienteNotaFiscalTerceiro: string;
+            export declare const PacienteNotaFiscalNome: string;
+            export declare const PacienteNotaFiscalCpf: string;
+            export declare const PacienteNotaFiscalCnpj: string;
+            export declare const PacienteNotaFiscalEndereco: string;
+            export declare const PacienteNotaFiscalNumero: string;
+            export declare const PacienteNotaFiscalBairro: string;
+            export declare const PacienteNotaFiscalCidade: string;
+            export declare const PacienteNotaFiscalEstadoId: string;
+            export declare const PacienteNotaFiscalEmail: string;
+            export declare const PacienteFoto: string;
+            export declare const PacienteDataFoto: string;
+            export declare const PacientePacienteIdControlMedic: string;
+            export declare const PacientePacienteIdGestorMedico: string;
+        }
+
+        ['ProtocoloEnvolvidoId', 'ProtocoloId', 'TipoEnvolvimentoId', 'ProfissionalId', 'PacienteId', 'FuncionarioId', 'FornecedorId', 'Protocolo', 'ProtocoloTipoProtocoloId', 'ProtocoloConvenioId', 'ProtocoloResponsável', 'ProtocoloAssunto', 'ProtocoloDataEnvio', 'ProtocoloDataRetorno', 'ProtocoloResolvido', 'ProtocoloDataResolvido', 'ProtocoloDecisaoTomada', 'TipoEnvolvimentoDescricao', 'ProfissionalIdAtivo', 'ProfissionalDataInicio', 'ProfissionalDataFim', 'ProfissionalMotivoEncerramento', 'Profissional', 'ProfissionalPai', 'ProfissionalMae', 'ProfissionalSexoId', 'ProfissionalDataNascimento', 'ProfissionalEstadoCivilId', 'ProfissionalCarteiraIdentidade', 'ProfissionalCpf', 'ProfissionalCnes', 'ProfissionalTipoProfissionalId', 'ProfissionalConselhoProfissionalId', 'ProfissionalNumeroConselho', 'ProfissionalUfConselhoProfissional', 'ProfissionalCbosid', 'ProfissionalProntuarioSigiloso', 'ProfissionalObservacao', 'ProfissionalPessoaJuridica', 'ProfissionalCnpj', 'ProfissionalDataInicioContrato', 'ProfissionalDataFimContrato', 'ProfissionalMotivoEncerramentoContrato', 'PacienteDataCadastro', 'PacienteDataUltimaAtualizacao', 'PacienteMatricula', 'PacienteStatusId', 'Paciente', 'PacienteEspecial', 'PacientePai', 'PacienteMae', 'PacienteSexoId', 'PacienteDataNascimento', 'PacienteCns', 'PacienteCarteiraIdentidade', 'PacienteCpf', 'PacienteObservacao', 'PacienteDisturbiosAssociados', 'PacienteResponsavel', 'PacienteNotaFiscalTerceiro', 'PacienteNotaFiscalNome', 'PacienteNotaFiscalCpf', 'PacienteNotaFiscalCnpj', 'PacienteNotaFiscalEndereco', 'PacienteNotaFiscalNumero', 'PacienteNotaFiscalBairro', 'PacienteNotaFiscalCidade', 'PacienteNotaFiscalEstadoId', 'PacienteNotaFiscalEmail', 'PacienteFoto', 'PacienteDataFoto', 'PacientePacienteIdControlMedic', 'PacientePacienteIdGestorMedico'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

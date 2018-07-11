@@ -1,0 +1,205 @@
+﻿@model Exemplos.Pacientes.PacientesPrint.PacienteReportData
+@{
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+
+
+}
+
+@foreach (var ModelPacienteData in Model.PacientesList)
+{
+    var paciente = ModelPacienteData.Paciente;
+    
+    var fotoPaciente = VirtualPathUtility.ToAbsolute(
+        (paciente.Foto == null || string.IsNullOrEmpty(paciente.Foto)) ? "~/Content/site/images/default-avatar.png" :
+        "~/upload/" + paciente.Foto);
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <div class="box no-border">
+                <div class="box-header">
+                    <h4 class="box-title text-bold">Dados do Paciente</h4>
+                </div>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td rowspan="3"><img src="@fotoPaciente" class="foto-paciente"></td>
+                            <td colspan="2"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Matricula"):</span> @paciente.Matricula</td>
+                            <td colspan="2"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Status"):</span> @paciente.Status</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Paciente"):</span> @paciente.Paciente</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Sexo"):</span> @paciente.Sexo</td>
+                            <td><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.DataNascimento"):</span> @(paciente.DataNascimento.HasValue ? paciente.DataNascimento.Value.ToShortDateString() : "")</td>
+                            <td colspan="2"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Especial"):</span> @(paciente.Especial.HasValue && paciente.Especial.Value ? "Sim":"Não")</td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.CNS"):</span> @paciente.CNS</td>
+                            <td colspan="2"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.CarteiraIdentidade"):</span> @paciente.CarteiraIdentidade</td>
+                            <td><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.CPF"):</span> @paciente.CPF</td>
+                            <td><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.DataCadastro"):</span> @(paciente.DataCadastro.HasValue ? paciente.DataCadastro.Value.ToShortDateString() : "")</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Pai"):</span> @paciente.Pai</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Mae"):</span> @paciente.Mae</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Responsavel"):</span> @paciente.Responsavel</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <div class="box no-border">
+                <div class="box-header">
+                    <h4 class="box-title text-bold">Diversos</h4>
+                </div>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.Observacao"):</span> @paciente.Observacao</td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Pacientes.DisturbiosAssociados"):</span> @paciente.DisturbiosAssociados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <div class="box no-border">
+                <div class="box-header">
+                    <h4 class="box-title text-bold">Contatos</h4>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Contatos.Tratamento")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Contatos.Nome")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Contatos.TipoContato")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Contatos.TipoMeioContato")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Contatos.ConteudoMeioContato")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Contatos.ObservacoesContato")</span></th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        
+                        @foreach (var ModelContato in paciente.ContatosList)
+                        {
+                        <tr>
+                            <td>@ModelContato.Tratamento</td>
+                            <td>@ModelContato.Nome</td>
+                            <td>@ModelContato.TipoContato</td>
+                            <td>@ModelContato.TipoMeioContato</td>
+                            <td>@ModelContato.ConteudoMeioContato</td>
+                            <td>@ModelContato.ObservacoesContato</td>
+                        </tr>
+                        }
+                       
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <div class="box no-border">
+                <div class="box-header">
+                    <h4 class="box-title text-bold">Endereços</h4>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.TipoEndereco")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Rua")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Numero")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Complemento")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Bairro")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Cidade")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Estado")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Cep")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.Enderecos.Referencia")</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        
+                        @foreach (var ModelEndereco in paciente.EnderecosList)
+                        {
+                            <tr>
+                                <td>@ModelEndereco.TipoEndereco</td>
+                                <td>@ModelEndereco.Rua</td>
+                                <td>@ModelEndereco.Numero</td>
+                                <td>@ModelEndereco.Complemento</td>
+                                <td>@ModelEndereco.Bairro</td>
+                                <td>@ModelEndereco.Cidade</td>
+                                <td>@ModelEndereco.Estado</td>
+                                <td>@ModelEndereco.Cep</td>
+                                <td>@ModelEndereco.Referencia</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <div class="box no-border">
+                <div class="box-header">
+                    <h4 class="box-title text-bold">Convênios</h4>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.PacientesConvenios.ConvenioNomeFantasia")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.PacientesConvenios.ConvenioPrincipal")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.PacientesConvenios.Carteirinha")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.PacientesConvenios.DataValidadeCarteirinha")</span></th>
+                            <th><span class="text-bold">@Serenity.LocalText.Get("Db.Clinica.PacientesConvenios.Inativo")</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach (var ModelPacienteConvenio in ModelPacienteData.PacientesConveniosList)
+                        {
+                            <tr>
+                                <td>@ModelPacienteConvenio.ConvenioNomeFantasia</td>
+                                <td>@ModelPacienteConvenio.ConvenioPrincipal</td>
+                                <td>@ModelPacienteConvenio.Carteirinha</td>
+                                <td>@ModelPacienteConvenio.DataValidadeCarteirinha</td>
+                                <td>@ModelPacienteConvenio.Inativo</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+
+</div>
+
+
+<div class="row report-print-break">
+    <!-- /.col -->
+</div>
+}
