@@ -46,11 +46,11 @@ namespace Exemplos.Clinica.Forms
         public DateTime DataInativo { get; set; }
 
         [Category("Contatos")]
-        //[ContatosEditor]
+        [ContatosEditor]
         public List<Entities.ContatosRow> ContatosList { get; set; }
 
         [Category("Endereços")]
-        //[EnderecosEditor]
+        [EnderecosEditor]
         public List<Entities.EnderecosRow> EnderecosList { get; set; }
     }
 }

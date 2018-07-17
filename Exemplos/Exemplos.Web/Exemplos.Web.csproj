@@ -1915,9 +1915,11 @@
   <ItemGroup>
     <Compile Include="Imports\ClientTypes\Administration.PermissionCheckEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\Clinica.ContatosEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Clinica.DemonstrativosEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Clinica.DemonstrativosItensEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Clinica.DemonstrativosNotasFiscaisEditorAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\Clinica.EnderecosEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Clinica.EstadosCivisEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Clinica.ExceptionsEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\Clinica.FornecedoresEditorAttribute.cs" />

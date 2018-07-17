@@ -38,7 +38,7 @@ namespace Exemplos.Clinica {
 
         updateInterface() {
             super.updateInterface();
-           
+
 
             this.toolbar.findButton("print-pacientes-button").toggleClass('disabled', this.isNew());
         }
@@ -52,7 +52,7 @@ namespace Exemplos.Clinica {
                 extension: 'pdf',
                 getParams: () => ({ PacientesIdList: [this.get_entityId()] })
             }));
-            
+
             return buttons;
         }
 

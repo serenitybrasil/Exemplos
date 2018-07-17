@@ -49,3 +49,4 @@ C:\DESENVOLVIMENTO\SerenityBrasil\Exemplos\Exemplos\Exemplos.Web\bin\System.Web.
 C:\DESENVOLVIMENTO\SerenityBrasil\Exemplos\Exemplos\Exemplos.Web\bin\ru-ru\MsieJavaScriptEngine.resources.dll
 C:\DESENVOLVIMENTO\SerenityBrasil\Exemplos\Exemplos\Exemplos.Web\obj\Debug\Exemplos.Web.dll
 C:\DESENVOLVIMENTO\SerenityBrasil\Exemplos\Exemplos\Exemplos.Web\obj\Debug\Exemplos.Web.pdb
+C:\DESENVOLVIMENTO\SerenityBrasil\Exemplos\Exemplos\Exemplos.Web\obj\Debug\Exemplos.Web.csprojResolveAssemblyReference.cache

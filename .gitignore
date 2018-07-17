@@ -1,0 +1,7 @@
+packages/
+Exemplos/Exemplos.Web/obj/
+Exemplos/Exemplos.Web/Web.Release.config
+Exemplos/Exemplos.Web/App_Data/Exemplos_Default_v1.mdf
+Exemplos/Exemplos.Web/App_Data/Exemplos_Default_v1.ldf
+Exemplos/Exemplos.Web/App_Data/texts/user.texts.pt-BR.json
+Exemplos/Exemplos.Web/Properties/PublishProfiles/IIS.pubxml

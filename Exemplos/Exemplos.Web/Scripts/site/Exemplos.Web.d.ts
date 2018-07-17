@@ -1,2719 +1,6 @@
-﻿/// <reference types="jqueryui" />
+﻿/// <reference types="jquery" />
+/// <reference types="jqueryui" />
 /// <reference types="jquery.validation" />
-/// <reference types="jquery" />
-declare namespace Exemplos.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Membership {
-    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Membership {
-    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Membership {
-    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Membership {
-    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.LanguageList {
-    function getValue(): string[][];
-}
-declare namespace Exemplos.ScriptInitialization {
-}
-declare namespace Exemplos {
-    class LKCodeDescr extends Serenity.LookupEditorBase<LKCodeDescOptions, any> {
-        constructor(container: JQuery, opt?: LKCodeDescOptions);
-        getSelect2Options(): Select2Options;
-        protected myFormatSelection(item: Serenity.Select2Item): string;
-        protected myFormatResult(item: Serenity.Select2Item): string;
-    }
-    interface LKCodeDescOptions extends Serenity.LookupEditorOptions {
-        codeName: string;
-        descrName: string;
-    }
-}
-declare namespace Exemplos.Common {
-    class UserPreferenceStorage implements Serenity.SettingStorage {
-        getItem(key: string): string;
-        setItem(key: string, data: string): void;
-    }
-}
-declare var jsPDF: any;
-declare namespace Exemplos.Common {
-    interface PdfExportOptions {
-        grid: Serenity.DataGrid<any, any>;
-        onViewSubmit: () => boolean;
-        title?: string;
-        hint?: string;
-        separator?: boolean;
-        reportTitle?: string;
-        titleTop?: number;
-        titleFontSize?: number;
-        fileName?: string;
-        pageNumbers?: boolean;
-        columnTitles?: {
-            [key: string]: string;
-        };
-        tableOptions?: jsPDF.AutoTableOptions;
-        output?: string;
-        autoPrint?: boolean;
-        printDateTimeHeader?: boolean;
-    }
-    namespace PdfExportHelper {
-        function exportToPdf(options: PdfExportOptions): void;
-        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
-    }
-}
-declare var jsPDF: any;
-declare namespace Exemplos.Common {
-    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
-        private report;
-        private propertyGrid;
-        constructor(options: ReportDialogOptions);
-        protected getDialogButtons(): any;
-        protected createPropertyGrid(): void;
-        protected loadReport(reportKey: string): void;
-        protected updateInterface(): void;
-        executeReport(target: string, ext: string, download: boolean): void;
-        getToolbarButtons(): {
-            title: string;
-            cssClass: string;
-            onClick: () => void;
-        }[];
-    }
-    interface ReportDialogOptions {
-        reportKey: string;
-    }
-}
-declare namespace Exemplos.Common {
-    interface ReportExecuteOptions {
-        reportKey: string;
-        download?: boolean;
-        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
-        getParams?: () => any;
-        params?: {
-            [key: string]: any;
-        };
-        target?: string;
-    }
-    interface ReportButtonOptions extends ReportExecuteOptions {
-        title?: string;
-        cssClass?: string;
-        icon?: string;
-    }
-    namespace ReportHelper {
-        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-        function execute(options: ReportExecuteOptions): void;
-    }
-}
-declare var jsPDF: any;
-declare namespace Exemplos.Common {
-    class ReportPage extends Serenity.Widget<any> {
-        private reportKey;
-        private propertyItems;
-        private propertyGrid;
-        constructor(element: JQuery);
-        protected updateMatchFlags(text: string): void;
-        protected categoryClick(e: any): void;
-        protected reportLinkClick(e: any): void;
-    }
-}
-declare namespace Exemplos.Common {
-    class LanguageSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery, currentLanguage: string);
-    }
-}
-declare namespace Exemplos.Common {
-    class SidebarSearch extends Serenity.Widget<any> {
-        private menuUL;
-        constructor(input: JQuery, menuUL: JQuery);
-        protected updateMatchFlags(text: string): void;
-    }
-}
-declare namespace Exemplos.Common {
-    class ThemeSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery);
-        protected getCurrentTheme(): string;
-    }
-}
-declare namespace Exemplos {
-    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
-        constructor();
-        cancelled: boolean;
-        max: number;
-        value: number;
-        title: string;
-        cancelTitle: string;
-        getDialogOptions(): JQueryUI.DialogOptions;
-        initDialog(): void;
-        getTemplate(): string;
-    }
-}
-declare namespace Exemplos.Common {
-    class BulkServiceAction {
-        protected keys: string[];
-        protected queue: string[];
-        protected queueIndex: number;
-        protected progressDialog: BasicProgressDialog;
-        protected pendingRequests: number;
-        protected completedRequests: number;
-        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
-        private successCount;
-        private errorCount;
-        done: () => void;
-        protected createProgressDialog(): void;
-        protected getConfirmationFormat(): string;
-        protected getConfirmationMessage(targetCount: any): string;
-        protected confirm(targetCount: any, action: any): void;
-        protected getNothingToProcessMessage(): string;
-        protected nothingToProcess(): void;
-        protected getParallelRequests(): number;
-        protected getBatchSize(): number;
-        protected startParallelExecution(): void;
-        protected serviceCallCleanup(): void;
-        protected executeForBatch(batch: string[]): void;
-        protected executeNextBatch(): void;
-        protected getAllHadErrorsFormat(): string;
-        protected showAllHadErrors(): void;
-        protected getSomeHadErrorsFormat(): string;
-        protected showSomeHadErrors(): void;
-        protected getAllSuccessFormat(): string;
-        protected showAllSuccess(): void;
-        protected showResults(): void;
-        execute(keys: string[]): void;
-        get_successCount(): any;
-        set_successCount(value: number): void;
-        get_errorCount(): any;
-        set_errorCount(value: number): void;
-    }
-}
-declare namespace Exemplos.DialogUtils {
-    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
-}
-declare namespace Exemplos.Common {
-    class EnumSelectFormatter implements Slick.Formatter {
-        constructor();
-        format(ctx: Slick.FormatterContext): string;
-        enumKey: string;
-        allowClear: boolean;
-        emptyItemText: string;
-    }
-}
-declare namespace Exemplos.Common {
-    interface ExcelExportOptions {
-        grid: Serenity.DataGrid<any, any>;
-        service: string;
-        onViewSubmit: () => boolean;
-        title?: string;
-        hint?: string;
-        separator?: boolean;
-    }
-    namespace ExcelExportHelper {
-        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
-    }
-}
-declare namespace Exemplos.Common {
-    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        protected getIdProperty(): string;
-        protected nextId: number;
-        constructor(container: JQuery);
-        protected id(entity: TEntity): any;
-        protected getNextId(): string;
-        protected setNewId(entity: TEntity): void;
-        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
-        protected deleteEntity(id: number): boolean;
-        protected validateEntity(row: TEntity, id: number): boolean;
-        protected setEntities(items: TEntity[]): void;
-        protected getNewEntity(): TEntity;
-        protected getButtons(): Serenity.ToolButton[];
-        protected editItem(entityOrId: any): void;
-        getEditValue(property: any, target: any): void;
-        setEditValue(source: any, property: any): void;
-        value: TEntity[];
-        protected getGridCanLoad(): boolean;
-        protected usePager(): boolean;
-        protected getInitialTitle(): any;
-        protected createQuickSearchInput(): void;
-    }
-}
-declare namespace Exemplos.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        protected getIdProperty(): string;
-        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
-        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
-        destroy(): void;
-        protected updateInterface(): void;
-        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
-        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposMeiosContatosDialog extends Serenity.EntityDialog<TiposMeiosContatosRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: TiposMeiosContatosForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposMeiosContatosEditor extends Common.GridEditorBase<TiposMeiosContatosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof TiposMeiosContatosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposMeiosContatosEditorDialog extends Common.GridEditorDialog<TiposMeiosContatosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: TiposMeiosContatosForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposMeiosContatosGrid extends Serenity.EntityGrid<TiposMeiosContatosRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof TiposMeiosContatosDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposEnderecosDialog extends Serenity.EntityDialog<TiposEnderecosRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: TiposEnderecosForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposEnderecosEditor extends Common.GridEditorBase<TiposEnderecosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof TiposEnderecosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposEnderecosEditorDialog extends Common.GridEditorDialog<TiposEnderecosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: TiposEnderecosForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposEnderecosGrid extends Serenity.EntityGrid<TiposEnderecosRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof TiposEnderecosDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposContatosDialog extends Serenity.EntityDialog<TiposContatosRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: TiposContatosForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposContatosEditor extends Common.GridEditorBase<TiposContatosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof TiposContatosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposContatosEditorDialog extends Common.GridEditorDialog<TiposContatosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: TiposContatosForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class TiposContatosGrid extends Serenity.EntityGrid<TiposContatosRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof TiposContatosDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class StatusDialog extends Serenity.EntityDialog<StatusRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: StatusForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class StatusEditor extends Common.GridEditorBase<StatusRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof StatusEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class StatusEditorDialog extends Common.GridEditorDialog<StatusRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: StatusForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class StatusGrid extends Serenity.EntityGrid<StatusRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof StatusDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class SexoDialog extends Serenity.EntityDialog<SexoRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: SexoForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class SexoEditor extends Common.GridEditorBase<SexoRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof SexoEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class SexoEditorDialog extends Common.GridEditorDialog<SexoRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: SexoForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class SexoGrid extends Serenity.EntityGrid<SexoRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof SexoDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesConveniosDialog extends Serenity.EntityDialog<PacientesConveniosRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: PacientesConveniosForm;
-        dialogOpen(): void;
-        afterLoadEntity(): void;
-        constructor();
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesPacientesConveniosDialog extends PacientesConveniosDialog {
-        constructor();
-        updateInterface(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesConveniosGrid extends Serenity.EntityGrid<PacientesConveniosRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PacientesConveniosDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesPacientesConveniosGrid extends PacientesConveniosGrid {
-        protected getDialogType(): typeof PacientesPacientesConveniosDialog;
-        constructor(container: JQuery);
-        protected getColumns(): Slick.Column[];
-        protected initEntityDialog(itemType: any, dialog: any): void;
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _PacienteId;
-        PacienteId: number;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesPacientesEmissaoNfDialog extends PacientesEmissaoNfDialog {
-        constructor();
-        updateInterface(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesEmissaoNfGrid extends Serenity.EntityGrid<PacientesEmissaoNfRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PacientesEmissaoNfDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesPacientesEmissaoNfGrid extends PacientesEmissaoNfGrid {
-        protected getDialogType(): typeof PacientesPacientesEmissaoNfDialog;
-        constructor(container: JQuery);
-        protected getColumns(): Slick.Column[];
-        protected initEntityDialog(itemType: any, dialog: any): void;
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _PacienteId;
-        PacienteId: number;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesEmissaoNfDialog extends Serenity.EntityDialog<PacientesEmissaoNfRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: PacientesEmissaoNfForm;
-        protected limpa_formulario_cep(): void;
-        protected preenche_formulario_cep(thisForm: any, dados_cep: ViaCepData): void;
-        protected preenche_formulario_cep_string(info: any): void;
-        dialogOpen(): void;
-        getValidatorOptions(): JQueryValidation.ValidationOptions;
-        constructor();
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesEmissaoNfEditor extends Common.GridEditorBase<PacientesEmissaoNfRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PacientesEmissaoNfEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesEmissaoNfEditorDialog extends Common.GridEditorDialog<PacientesEmissaoNfRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: PacientesEmissaoNfForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesConveniosEditor extends Common.GridEditorBase<PacientesConveniosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PacientesConveniosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesConveniosEditorDialog extends Common.GridEditorDialog<PacientesConveniosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: PacientesConveniosForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesDialog extends Serenity.EntityDialog<PacientesRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: PacientesForm;
-        private pacientesconveniosGrid;
-        private pacientesemissaonfGrid;
-        private loadedState;
-        dialogOpen(): void;
-        getValidatorOptions(): JQueryValidation.ValidationOptions;
-        updateTitle(): void;
-        updateInterface(): void;
-        getToolbarButtons(): Serenity.ToolButton[];
-        afterLoadEntity(): void;
-        constructor();
-        getSaveState(): string;
-        loadResponse(data: any): void;
-        loadEntity(entity: PacientesRow): void;
-        onSaveSuccess(response: any): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesGrid extends Serenity.EntityGrid<PacientesRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PacientesDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class FornecedoresDialog extends Serenity.EntityDialog<FornecedoresRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: FornecedoresForm;
-        dialogOpen(): void;
-        afterLoadEntity(): void;
-        constructor();
-    }
-}
-declare namespace Exemplos.Clinica {
-    class FornecedoresEditor extends Common.GridEditorBase<FornecedoresRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof FornecedoresEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class FornecedoresEditorDialog extends Common.GridEditorDialog<FornecedoresRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: FornecedoresForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class FornecedoresGrid extends Serenity.EntityGrid<FornecedoresRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof FornecedoresDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ExceptionsDialog extends Serenity.EntityDialog<ExceptionsRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ExceptionsForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ExceptionsEditor extends Common.GridEditorBase<ExceptionsRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ExceptionsEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ExceptionsEditorDialog extends Common.GridEditorDialog<ExceptionsRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: ExceptionsForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ExceptionsGrid extends Serenity.EntityGrid<ExceptionsRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ExceptionsDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class EstadosCivisDialog extends Serenity.EntityDialog<EstadosCivisRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: EstadosCivisForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class EstadosCivisEditor extends Common.GridEditorBase<EstadosCivisRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof EstadosCivisEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class EstadosCivisEditorDialog extends Common.GridEditorDialog<EstadosCivisRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: EstadosCivisForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class EstadosCivisGrid extends Serenity.EntityGrid<EstadosCivisRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof EstadosCivisDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class EnderecosEditor extends Common.GridEditorBase<EnderecosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof EnderecosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-        protected getAddButtonCaption(): string;
-        protected validateEntity(row: EnderecosRow, id: number): boolean;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class EnderecosEditorDialog extends Common.GridEditorDialog<EnderecosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: EnderecosForm;
-        protected limpa_formulario_cep(): void;
-        protected preenche_formulario_cep(thisForm: any, dados_cep: ViaCepData): void;
-        protected preenche_formulario_cep_string(info: any): void;
-        updateTitle(): void;
-        constructor();
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ConveniosDialog extends Serenity.EntityDialog<ConveniosRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ConveniosForm;
-        private loadedState;
-        dialogOpen(): void;
-        afterLoadEntity(): void;
-        constructor();
-        getSaveState(): string;
-        loadResponse(data: any): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ConveniosEditor extends Common.GridEditorBase<ConveniosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ConveniosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ConveniosEditorDialog extends Common.GridEditorDialog<ConveniosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: ConveniosForm;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ConveniosGrid extends Serenity.EntityGrid<ConveniosRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ConveniosDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ContatosDialog extends Serenity.EntityDialog<ContatosRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ContatosForm;
-        dialogOpen(): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ContatosEditor extends Common.GridEditorBase<ContatosRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ContatosEditorDialog;
-        protected getLocalTextPrefix(): string;
-        protected _myParentForm: string;
-        myParentForm: string;
-        constructor(container: JQuery);
-        protected getAddButtonCaption(): string;
-        protected initEntityDialog(itemType: string, dialog: ContatosEditorDialog): void;
-        protected validateEntity(row: ContatosRow, id: number): boolean;
-        protected remove_coluna(nomeColuna: string): void;
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ContatosEditorDialog extends Common.GridEditorDialog<ContatosRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected form: ContatosForm;
-        protected _myParentForm: string;
-        myParentForm: string;
-        updateTitle(): void;
-        constructor();
-        private setMascara(details);
-    }
-}
-declare namespace Exemplos.Clinica {
-    class ContatosGrid extends Serenity.EntityGrid<ContatosRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ContatosDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Exemplos {
-    function JSvalidarCPF(CPF: string): boolean;
-    function JSvalidarCNPJ(CNPJ: any): boolean;
-    /**
-     * Validar CPF no form do Serenity
-     * @param widget: passar o nome do campo para validação
-     * @param uniqueName: Passar o uniqueName do Dialog
-     * @param alert: texto que vai aparecer no HINT do erro
-     * @param text: texto que vai aparecer no ALERT WARNING do erro
-     * @param setfocus: se vai acionar ou não o focus no campo.
-     */
-    function addValidationRule_CPF(widget: Serenity.Widget<any>, VOptions?: addValidationRuleOptions): void;
-    /**
-     * Validar CNPJ no form do Serenity
-     * @param widget: passar o nome do campo para validação
-     * @param uniqueName: Passar o uniqueName do Dialog
-     * @param alert: texto que vai aparecer no HINT do erro
-     * @param text: texto que vai aparecer no ALERT WARNING do erro
-     * @param setfocus: se vai acionar ou não o focus no campo.
-     */
-    function addValidationRule_CNPJ(widget: Serenity.Widget<any>, VOptions?: addValidationRuleOptions): void;
-    interface addValidationRuleOptions {
-        uniqueName?: string;
-        alert?: string;
-        text?: string;
-        setfocus?: boolean;
-    }
-    interface ViaCepData {
-        /**
-         * Para o typescript sem warnings e erros nos dados retornados de https://viacep.com.br/ws/29075590/json
-         */
-        cep: string;
-        logradouro: string;
-        complemento: string;
-        bairro: string;
-        localidade: string;
-        uf: string;
-        unidade: string;
-        ibge: string;
-        gia: string;
-    }
-    /**
-     * O Formulario deve ser passado para que a funcao chamada saiba qual formulario ira preencher.
-     * Esta funcao poderia usar promise e retornar para tratamento diretamente, mas para evitar alguma incompatibilidade em navegadores antigos,
-     * a redundância é feita e passada à função de callback para preenchimento dos campos do formulário.
-     *
-     * @param CEP - string do CEP a ser buscado
-     * @param formulario - Deve ser passado para nao perder a referencia
-     * @param fnRetornoPreenchimento - Funcao para preencher o formulario
-     */
-    function BuscaCEP(CEP: any, formulario: any, fnRetornoPreenchimento: any): void;
-}
-declare namespace Exemplos.Administration {
-    class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
-        private searchText;
-        constructor(div: JQuery);
-        protected createToolbarExtensions(): void;
-        protected getButtons(): any[];
-        protected getTreeItems(): Serenity.CheckTreeItem<any>[];
-        protected onViewFilter(item: any): boolean;
-    }
-}
-declare namespace Exemplos.Administration {
-    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
-        private permissions;
-        constructor(opt: UserRoleDialogOptions);
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getTemplate(): string;
-    }
-    interface UserRoleDialogOptions {
-        userID: number;
-        username: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
-        protected getIdProperty(): string;
-        private searchText;
-        private byParentKey;
-        private rolePermissions;
-        constructor(container: JQuery, opt: PermissionCheckEditorOptions);
-        private getItemGrantRevokeClass(item, grant);
-        private getItemEffectiveClass(item);
-        protected getColumns(): Slick.Column[];
-        setItems(items: PermissionCheckItem[]): void;
-        protected onViewSubmit(): boolean;
-        protected onViewFilter(item: PermissionCheckItem): boolean;
-        private matchContains(item);
-        private getDescendants(item, excludeGroups);
-        protected onClick(e: any, row: any, cell: any): void;
-        private getParentKey(key);
-        protected getButtons(): Serenity.ToolButton[];
-        protected createToolbarExtensions(): void;
-        private getSortedGroupAndPermissionKeys(titleByKey);
-        get_value(): UserPermissionRow[];
-        set_value(value: UserPermissionRow[]): void;
-        get_rolePermissions(): string[];
-        set_rolePermissions(value: string[]): void;
-    }
-    interface PermissionCheckEditorOptions {
-        showRevoke?: boolean;
-    }
-    interface PermissionCheckItem {
-        ParentKey?: string;
-        Key?: string;
-        Title?: string;
-        IsGroup?: boolean;
-        GrantRevoke?: boolean;
-    }
-}
-declare namespace Exemplos.Administration {
-    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
-        private permissions;
-        constructor(opt: UserPermissionDialogOptions);
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getTemplate(): string;
-    }
-    interface UserPermissionDialogOptions {
-        userID?: number;
-        username?: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    class UserDialog extends Serenity.EntityDialog<UserRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getIsActiveProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: UserForm;
-        constructor();
-        protected getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
-        protected afterLoadEntity(): void;
-    }
-}
-declare namespace Exemplos.Administration {
-    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof UserDialog;
-        protected getIdProperty(): string;
-        protected getIsActiveProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
-declare namespace Exemplos.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
-}
-declare namespace Exemplos.Administration {
-    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private hasChanges;
-        private searchText;
-        private sourceLanguage;
-        private targetLanguage;
-        private targetLanguageKey;
-        constructor(container: JQuery);
-        protected onClick(e: JQueryEventObject, row: number, cell: number): any;
-        protected getColumns(): Slick.Column[];
-        protected createToolbarExtensions(): void;
-        protected saveChanges(language: string): RSVP.Promise<any>;
-        protected onViewSubmit(): boolean;
-        protected getButtons(): Serenity.ToolButton[];
-        protected createQuickSearchInput(): void;
-        protected onViewFilter(item: TranslationItem): boolean;
-        protected usePager(): boolean;
-    }
-}
-declare namespace Exemplos.Administration {
-    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
-        private permissions;
-        constructor(opt: RolePermissionDialogOptions);
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getTemplate(): string;
-    }
-    interface RolePermissionDialogOptions {
-        roleID?: number;
-        title?: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: RoleForm;
-        protected getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
-    }
-}
-declare namespace Exemplos.Administration {
-    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof RoleDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
-declare namespace Exemplos.Administration {
-    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: LanguageForm;
-    }
-}
-declare namespace Exemplos.Administration {
-    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof LanguageDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
-declare namespace Exemplos.Administration {
-}
-declare namespace Exemplos.Administration {
-    class LanguageForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface LanguageForm {
-        LanguageId: Serenity.StringEditor;
-        LanguageName: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface LanguageRow {
-        Id?: number;
-        LanguageId?: string;
-        LanguageName?: string;
-    }
-    namespace LanguageRow {
-        const idProperty = "Id";
-        const nameProperty = "LanguageName";
-        const localTextPrefix = "Administration.Language";
-        const lookupKey = "Administration.Language";
-        namespace Fields {
-            const Id: string;
-            const LanguageId: string;
-            const LanguageName: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace LanguageService {
-        const baseUrl = "Administration/Language";
-        function Create(request: Serenity.SaveRequest<LanguageRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<LanguageRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<LanguageRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<LanguageRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-}
-declare namespace Exemplos.Administration {
-    class RoleForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface RoleForm {
-        RoleName: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface RolePermissionListRequest extends Serenity.ServiceRequest {
-        RoleID?: number;
-        Module?: string;
-        Submodule?: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface RolePermissionListResponse extends Serenity.ListResponse<string> {
-    }
-}
-declare namespace Exemplos.Administration {
-    interface RolePermissionRow {
-        RolePermissionId?: number;
-        RoleId?: number;
-        PermissionKey?: string;
-        RoleRoleName?: string;
-    }
-    namespace RolePermissionRow {
-        const idProperty = "RolePermissionId";
-        const nameProperty = "PermissionKey";
-        const localTextPrefix = "Administration.RolePermission";
-        namespace Fields {
-            const RolePermissionId: string;
-            const RoleId: string;
-            const PermissionKey: string;
-            const RoleRoleName: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace RolePermissionService {
-        const baseUrl = "Administration/RolePermission";
-        function Update(request: RolePermissionUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    interface RolePermissionUpdateRequest extends Serenity.ServiceRequest {
-        RoleID?: number;
-        Module?: string;
-        Submodule?: string;
-        Permissions?: string[];
-    }
-}
-declare namespace Exemplos.Administration {
-    interface RoleRow {
-        RoleId?: number;
-        RoleName?: string;
-    }
-    namespace RoleRow {
-        const idProperty = "RoleId";
-        const nameProperty = "RoleName";
-        const localTextPrefix = "Administration.Role";
-        const lookupKey = "Administration.Role";
-        namespace Fields {
-            const RoleId: string;
-            const RoleName: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace RoleService {
-        const baseUrl = "Administration/Role";
-        function Create(request: Serenity.SaveRequest<RoleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<RoleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RoleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RoleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    interface TranslationItem {
-        Key?: string;
-        SourceText?: string;
-        TargetText?: string;
-        CustomText?: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface TranslationListRequest extends Serenity.ListRequest {
-        SourceLanguageID?: string;
-        TargetLanguageID?: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace TranslationService {
-        const baseUrl = "Administration/Translation";
-        function List(request: TranslationListRequest, onSuccess?: (response: Serenity.ListResponse<TranslationItem>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: TranslationUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const List: string;
-            const Update: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    interface TranslationUpdateRequest extends Serenity.ServiceRequest {
-        TargetLanguageID?: string;
-        Translations?: {
-            [key: string]: string;
-        };
-    }
-}
-declare namespace Exemplos.Administration {
-}
-declare namespace Exemplos.Administration {
-    class UserForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface UserForm {
-        Username: Serenity.StringEditor;
-        DisplayName: Serenity.StringEditor;
-        Email: Serenity.EmailEditor;
-        UserImage: Serenity.ImageUploadEditor;
-        Password: Serenity.PasswordEditor;
-        PasswordConfirm: Serenity.PasswordEditor;
-        Source: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserPermissionListRequest extends Serenity.ServiceRequest {
-        UserID?: number;
-        Module?: string;
-        Submodule?: string;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserPermissionRow {
-        UserPermissionId?: number;
-        UserId?: number;
-        PermissionKey?: string;
-        Granted?: boolean;
-        Username?: string;
-        User?: string;
-    }
-    namespace UserPermissionRow {
-        const idProperty = "UserPermissionId";
-        const nameProperty = "PermissionKey";
-        const localTextPrefix = "Administration.UserPermission";
-        namespace Fields {
-            const UserPermissionId: string;
-            const UserId: string;
-            const PermissionKey: string;
-            const Granted: string;
-            const Username: string;
-            const User: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace UserPermissionService {
-        const baseUrl = "Administration/UserPermission";
-        function Update(request: UserPermissionUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<UserPermissionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function ListRolePermissions(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function ListPermissionKeys(request: Serenity.ServiceRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const List: string;
-            const ListRolePermissions: string;
-            const ListPermissionKeys: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserPermissionUpdateRequest extends Serenity.ServiceRequest {
-        UserID?: number;
-        Module?: string;
-        Submodule?: string;
-        Permissions?: UserPermissionRow[];
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserRoleListRequest extends Serenity.ServiceRequest {
-        UserID?: number;
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserRoleListResponse extends Serenity.ListResponse<number> {
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserRoleRow {
-        UserRoleId?: number;
-        UserId?: number;
-        RoleId?: number;
-        Username?: string;
-        User?: string;
-    }
-    namespace UserRoleRow {
-        const idProperty = "UserRoleId";
-        const localTextPrefix = "Administration.UserRole";
-        namespace Fields {
-            const UserRoleId: string;
-            const UserId: string;
-            const RoleId: string;
-            const Username: string;
-            const User: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace UserRoleService {
-        const baseUrl = "Administration/UserRole";
-        function Update(request: UserRoleUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserRoleUpdateRequest extends Serenity.ServiceRequest {
-        UserID?: number;
-        Roles?: number[];
-    }
-}
-declare namespace Exemplos.Administration {
-    interface UserRow {
-        UserId?: number;
-        Username?: string;
-        Source?: string;
-        PasswordHash?: string;
-        PasswordSalt?: string;
-        DisplayName?: string;
-        Email?: string;
-        UserImage?: string;
-        LastDirectoryUpdate?: string;
-        IsActive?: number;
-        Password?: string;
-        PasswordConfirm?: string;
-        InsertUserId?: number;
-        InsertDate?: string;
-        UpdateUserId?: number;
-        UpdateDate?: string;
-    }
-    namespace UserRow {
-        const idProperty = "UserId";
-        const isActiveProperty = "IsActive";
-        const nameProperty = "Username";
-        const localTextPrefix = "Administration.User";
-        const lookupKey = "Administration.User";
-        namespace Fields {
-            const UserId: string;
-            const Username: string;
-            const Source: string;
-            const PasswordHash: string;
-            const PasswordSalt: string;
-            const DisplayName: string;
-            const Email: string;
-            const UserImage: string;
-            const LastDirectoryUpdate: string;
-            const IsActive: string;
-            const Password: string;
-            const PasswordConfirm: string;
-            const InsertUserId: string;
-            const InsertDate: string;
-            const UpdateUserId: string;
-            const UpdateDate: string;
-        }
-    }
-}
-declare namespace Exemplos.Administration {
-    namespace UserService {
-        const baseUrl = "Administration/User";
-        function Create(request: Serenity.SaveRequest<UserRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<UserRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Undelete(request: Serenity.UndeleteRequest, onSuccess?: (response: Serenity.UndeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<UserRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<UserRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Undelete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class ContatosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ContatosForm {
-        Tratamento: Serenity.StringEditor;
-        Nome: Serenity.StringEditor;
-        Departamento: Serenity.StringEditor;
-        TipoContatoId: Serenity.LookupEditor;
-        TipoMeioContatoId: Serenity.LookupEditor;
-        ConteudoMeioContato: Serenity.MaskedEditor;
-        Email: Serenity.EmailEditor;
-        ObservacoesContato: Serenity.TextAreaEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface ContatosRow {
-        ContatoId?: number;
-        PacienteId?: number;
-        ConvenioId?: number;
-        ProfissionalId?: number;
-        FornecedorId?: number;
-        Tratamento?: string;
-        Nome?: string;
-        Departamento?: string;
-        TipoContatoId?: number;
-        TipoMeioContatoId?: number;
-        ConteudoMeioContato?: string;
-        Email?: string;
-        ObservacoesContato?: string;
-        TipoContato?: string;
-        TipoContatoPessoaFisica?: boolean;
-        TipoContatoOrdem?: number;
-        TipoMeioContato?: string;
-    }
-    namespace ContatosRow {
-        const idProperty = "ContatoId";
-        const nameProperty = "Nome";
-        const localTextPrefix = "Clinica.Contatos";
-        namespace Fields {
-            const ContatoId: string;
-            const PacienteId: string;
-            const ConvenioId: string;
-            const ProfissionalId: string;
-            const FornecedorId: string;
-            const Tratamento: string;
-            const Nome: string;
-            const Departamento: string;
-            const TipoContatoId: string;
-            const TipoMeioContatoId: string;
-            const ConteudoMeioContato: string;
-            const Email: string;
-            const ObservacoesContato: string;
-            const TipoContato: string;
-            const TipoContatoPessoaFisica: string;
-            const TipoContatoOrdem: string;
-            const TipoMeioContato: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace ContatosService {
-        const baseUrl = "Clinica/Contatos";
-        function Create(request: Serenity.SaveRequest<ContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<ContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class ConveniosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ConveniosForm {
-        Cnpj: Serenity.MaskedEditor;
-        RazaoSocial: Serenity.StringEditor;
-        NomeFantasia: Serenity.StringEditor;
-        CodigoAns: Serenity.StringEditor;
-        CadastroConvenio: Serenity.StringEditor;
-        Logo: Serenity.StringEditor;
-        InscricaoMunicipal: Serenity.StringEditor;
-        InscricaoEstadual: Serenity.StringEditor;
-        Site: Serenity.StringEditor;
-        DataInicio: Serenity.DateTimeEditor;
-        Inativo: Serenity.BooleanEditor;
-        DataFim: Serenity.DateTimeEditor;
-        MotivoCancelamento: Serenity.TextAreaEditor;
-        Observacao: Serenity.TextAreaEditor;
-        VersaoTiss: Serenity.StringEditor;
-        WebService: Serenity.StringEditor;
-        SadtSolContratadoId: Serenity.StringEditor;
-        SadtExecutanteId: Serenity.StringEditor;
-        SadtProfissionalexecutante: Serenity.StringEditor;
-        SadtMembroEquipe: Serenity.StringEditor;
-        IdOrigem: Serenity.StringEditor;
-        IdDestino: Serenity.StringEditor;
-        OrigemIdPrestador: Serenity.StringEditor;
-        DestinoIdPrestador: Serenity.StringEditor;
-        IdLogo: Serenity.IntegerEditor;
-        GeraTiss: Serenity.BooleanEditor;
-        DataCadastro: Serenity.DateTimeEditor;
-        DataUltimaAtualizacao: Serenity.DateTimeEditor;
-        Latitude: Serenity.TextAreaEditor;
-        Longitude: Serenity.TextAreaEditor;
-        EmailNotaFiscal: Serenity.EmailEditor;
-        EmailContato: Serenity.EmailEditor;
-        EmailFaturamento: Serenity.EmailEditor;
-        EmailGlosa: Serenity.EmailEditor;
-        ContatosList: Serenity.StringEditor;
-        EnderecosList: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface ConveniosRow {
-        ConvenioId?: number;
-        Cnpj?: string;
-        RazaoSocial?: string;
-        NomeFantasia?: string;
-        CodigoAns?: string;
-        CadastroConvenio?: string;
-        Logo?: string;
-        InscricaoMunicipal?: string;
-        InscricaoEstadual?: string;
-        Site?: string;
-        DataInicio?: string;
-        Inativo?: boolean;
-        DataFim?: string;
-        MotivoCancelamento?: string;
-        Observacao?: string;
-        VersaoTiss?: string;
-        WebService?: string;
-        SadtSolContratadoId?: string;
-        SadtExecutanteId?: string;
-        SadtProfissionalexecutante?: string;
-        SadtMembroEquipe?: string;
-        IdOrigem?: string;
-        IdDestino?: string;
-        OrigemIdPrestador?: string;
-        DestinoIdPrestador?: string;
-        IdLogo?: number;
-        GeraTiss?: boolean;
-        DataCadastro?: string;
-        DataUltimaAtualizacao?: string;
-        Latitude?: string;
-        Longitude?: string;
-        EmailNotaFiscal?: string;
-        EmailContato?: string;
-        EmailFaturamento?: string;
-        EmailGlosa?: string;
-        ContatosList?: ContatosRow[];
-        EnderecosList?: EnderecosRow[];
-    }
-    namespace ConveniosRow {
-        const idProperty = "ConvenioId";
-        const nameProperty = "NomeFantasia";
-        const localTextPrefix = "Clinica.Convenios";
-        const lookupKey = "Clinica.Convenios";
-        namespace Fields {
-            const ConvenioId: string;
-            const Cnpj: string;
-            const RazaoSocial: string;
-            const NomeFantasia: string;
-            const CodigoAns: string;
-            const CadastroConvenio: string;
-            const Logo: string;
-            const InscricaoMunicipal: string;
-            const InscricaoEstadual: string;
-            const Site: string;
-            const DataInicio: string;
-            const Inativo: string;
-            const DataFim: string;
-            const MotivoCancelamento: string;
-            const Observacao: string;
-            const VersaoTiss: string;
-            const WebService: string;
-            const SadtSolContratadoId: string;
-            const SadtExecutanteId: string;
-            const SadtProfissionalexecutante: string;
-            const SadtMembroEquipe: string;
-            const IdOrigem: string;
-            const IdDestino: string;
-            const OrigemIdPrestador: string;
-            const DestinoIdPrestador: string;
-            const IdLogo: string;
-            const GeraTiss: string;
-            const DataCadastro: string;
-            const DataUltimaAtualizacao: string;
-            const Latitude: string;
-            const Longitude: string;
-            const EmailNotaFiscal: string;
-            const EmailContato: string;
-            const EmailFaturamento: string;
-            const EmailGlosa: string;
-            const ContatosList: string;
-            const EnderecosList: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace ConveniosService {
-        const baseUrl = "Clinica/Convenios";
-        function Create(request: Serenity.SaveRequest<ConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<ConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class EnderecosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface EnderecosForm {
-        TipoEnderecoId: Serenity.LookupEditor;
-        Cep: Serenity.MaskedEditor;
-        Rua: Serenity.StringEditor;
-        Numero: Serenity.StringEditor;
-        Complemento: Serenity.StringEditor;
-        Bairro: Serenity.StringEditor;
-        Cidade: Serenity.StringEditor;
-        CodigoIbgeCidade: Serenity.StringEditor;
-        Estado: Serenity.StringEditor;
-        CodigoIbgeEstado: Serenity.StringEditor;
-        Pais: Serenity.StringEditor;
-        Referencia: Serenity.StringEditor;
-        Observacao: Serenity.TextAreaEditor;
-        Latitude: Serenity.StringEditor;
-        Longitude: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface EnderecosRow {
-        EnderecoId?: number;
-        PacienteId?: number;
-        ConvenioId?: number;
-        ProfissionalId?: number;
-        FornecedorId?: number;
-        TipoEnderecoId?: number;
-        Rua?: string;
-        Numero?: string;
-        Complemento?: string;
-        Bairro?: string;
-        Cidade?: string;
-        CodigoIbgeCidade?: string;
-        Estado?: string;
-        CodigoIbgeEstado?: string;
-        Pais?: string;
-        Cep?: string;
-        Referencia?: string;
-        Observacao?: string;
-        Latitude?: string;
-        Longitude?: string;
-        TipoEndereco?: string;
-        TipoEnderecoPessoaFisica?: boolean;
-        TipoEnderecoOrdem?: number;
-    }
-    namespace EnderecosRow {
-        const idProperty = "EnderecoId";
-        const nameProperty = "Rua";
-        const localTextPrefix = "Clinica.Enderecos";
-        const lookupKey = "Clinica.Enderecos";
-        namespace Fields {
-            const EnderecoId: string;
-            const PacienteId: string;
-            const ConvenioId: string;
-            const ProfissionalId: string;
-            const FornecedorId: string;
-            const TipoEnderecoId: string;
-            const Rua: string;
-            const Numero: string;
-            const Complemento: string;
-            const Bairro: string;
-            const Cidade: string;
-            const CodigoIbgeCidade: string;
-            const Estado: string;
-            const CodigoIbgeEstado: string;
-            const Pais: string;
-            const Cep: string;
-            const Referencia: string;
-            const Observacao: string;
-            const Latitude: string;
-            const Longitude: string;
-            const TipoEndereco: string;
-            const TipoEnderecoPessoaFisica: string;
-            const TipoEnderecoOrdem: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace EnderecosService {
-        const baseUrl = "Clinica/Enderecos";
-        function Create(request: Serenity.SaveRequest<EnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<EnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class EstadosCivisForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface EstadosCivisForm {
-        Descricao: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface EstadosCivisRow {
-        EstadoCivilId?: number;
-        Descricao?: string;
-    }
-    namespace EstadosCivisRow {
-        const idProperty = "EstadoCivilId";
-        const nameProperty = "Descricao";
-        const localTextPrefix = "Clinica.EstadosCivis";
-        const lookupKey = "Clinica.EstadosCivis";
-        namespace Fields {
-            const EstadoCivilId: string;
-            const Descricao: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace EstadosCivisService {
-        const baseUrl = "Clinica/EstadosCivis";
-        function Create(request: Serenity.SaveRequest<EstadosCivisRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<EstadosCivisRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EstadosCivisRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EstadosCivisRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class ExceptionsForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ExceptionsForm {
-        Guid: Serenity.StringEditor;
-        ApplicationName: Serenity.StringEditor;
-        MachineName: Serenity.StringEditor;
-        CreationDate: Serenity.DateTimeEditor;
-        Type: Serenity.StringEditor;
-        IsProtected: Serenity.BooleanEditor;
-        Host: Serenity.StringEditor;
-        Url: Serenity.TextAreaEditor;
-        HttpMethod: Serenity.StringEditor;
-        IpAddress: Serenity.StringEditor;
-        Source: Serenity.StringEditor;
-        Message: Serenity.TextAreaEditor;
-        Detail: Serenity.StringEditor;
-        StatusCode: Serenity.IntegerEditor;
-        Sql: Serenity.StringEditor;
-        DeletionDate: Serenity.DateTimeEditor;
-        FullJson: Serenity.StringEditor;
-        ErrorHash: Serenity.IntegerEditor;
-        DuplicateCount: Serenity.IntegerEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface ExceptionsRow {
-        Id?: number;
-        Guid?: string;
-        ApplicationName?: string;
-        MachineName?: string;
-        CreationDate?: string;
-        Type?: string;
-        IsProtected?: boolean;
-        Host?: string;
-        Url?: string;
-        HttpMethod?: string;
-        IpAddress?: string;
-        Source?: string;
-        Message?: string;
-        Detail?: string;
-        StatusCode?: number;
-        Sql?: string;
-        DeletionDate?: string;
-        FullJson?: string;
-        ErrorHash?: number;
-        DuplicateCount?: number;
-    }
-    namespace ExceptionsRow {
-        const idProperty = "Id";
-        const nameProperty = "ApplicationName";
-        const localTextPrefix = "Clinica.Exceptions";
-        const lookupKey = "Clinica.Exceptions";
-        namespace Fields {
-            const Id: string;
-            const Guid: string;
-            const ApplicationName: string;
-            const MachineName: string;
-            const CreationDate: string;
-            const Type: string;
-            const IsProtected: string;
-            const Host: string;
-            const Url: string;
-            const HttpMethod: string;
-            const IpAddress: string;
-            const Source: string;
-            const Message: string;
-            const Detail: string;
-            const StatusCode: string;
-            const Sql: string;
-            const DeletionDate: string;
-            const FullJson: string;
-            const ErrorHash: string;
-            const DuplicateCount: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace ExceptionsService {
-        const baseUrl = "Clinica/Exceptions";
-        function Create(request: Serenity.SaveRequest<ExceptionsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<ExceptionsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ExceptionsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ExceptionsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class FornecedoresForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface FornecedoresForm {
-        Status: Serenity.BooleanEditor;
-        PessoaJuridica: Serenity.BooleanEditor;
-        RazaoSocial: Serenity.TextAreaEditor;
-        NomeFantasia: Serenity.TextAreaEditor;
-        NomeAbreviado: Serenity.StringEditor;
-        Cpf: Serenity.MaskedEditor;
-        Rg: Serenity.StringEditor;
-        Cnpj: Serenity.MaskedEditor;
-        InscricaoEstadual: Serenity.TextAreaEditor;
-        InscricaoMunicipal: Serenity.TextAreaEditor;
-        Site: Serenity.TextAreaEditor;
-        Telefone: Serenity.MaskedEditor;
-        Fax: Serenity.TextAreaEditor;
-        TelefoneAlternativo: Serenity.MaskedEditor;
-        EmailCorporativo: Serenity.EmailEditor;
-        AceitaReceberEmail: Serenity.BooleanEditor;
-        MotivoStatus: Serenity.TextAreaEditor;
-        QuantidadeEmpregados: Serenity.IntegerEditor;
-        AtividadeEmpresaId: Serenity.IntegerEditor;
-        ReceitaAnual: Serenity.DecimalEditor;
-        MarcasTrabalhadas: Serenity.TextAreaEditor;
-        ObservacoesGerais: Serenity.TextAreaEditor;
-        DataCriacao: Serenity.DateTimeEditor;
-        DataAlteracao: Serenity.DateTimeEditor;
-        Inativo: Serenity.BooleanEditor;
-        DataInativo: Serenity.DateTimeEditor;
-        ContatosList: Serenity.StringEditor;
-        EnderecosList: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface FornecedoresRow {
-        FornecedorId?: number;
-        Status?: boolean;
-        PessoaJuridica?: boolean;
-        RazaoSocial?: string;
-        NomeFantasia?: string;
-        NomeAbreviado?: string;
-        Cpf?: string;
-        Rg?: string;
-        Cnpj?: string;
-        InscricaoEstadual?: string;
-        InscricaoMunicipal?: string;
-        Site?: string;
-        Telefone?: string;
-        Fax?: string;
-        TelefoneAlternativo?: string;
-        EmailCorporativo?: string;
-        AceitaReceberEmail?: boolean;
-        MotivoStatus?: string;
-        QuantidadeEmpregados?: number;
-        AtividadeEmpresaId?: number;
-        ReceitaAnual?: number;
-        MarcasTrabalhadas?: string;
-        ObservacoesGerais?: string;
-        DataCriacao?: string;
-        DataAlteracao?: string;
-        Inativo?: boolean;
-        DataInativo?: string;
-        ContatosList?: ContatosRow[];
-        EnderecosList?: EnderecosRow[];
-    }
-    namespace FornecedoresRow {
-        const idProperty = "FornecedorId";
-        const nameProperty = "RazaoSocial";
-        const localTextPrefix = "Clinica.Fornecedores";
-        const lookupKey = "Clinica.Fornecedores";
-        namespace Fields {
-            const FornecedorId: string;
-            const Status: string;
-            const PessoaJuridica: string;
-            const RazaoSocial: string;
-            const NomeFantasia: string;
-            const NomeAbreviado: string;
-            const Cpf: string;
-            const Rg: string;
-            const Cnpj: string;
-            const InscricaoEstadual: string;
-            const InscricaoMunicipal: string;
-            const Site: string;
-            const Telefone: string;
-            const Fax: string;
-            const TelefoneAlternativo: string;
-            const EmailCorporativo: string;
-            const AceitaReceberEmail: string;
-            const MotivoStatus: string;
-            const QuantidadeEmpregados: string;
-            const AtividadeEmpresaId: string;
-            const ReceitaAnual: string;
-            const MarcasTrabalhadas: string;
-            const ObservacoesGerais: string;
-            const DataCriacao: string;
-            const DataAlteracao: string;
-            const Inativo: string;
-            const DataInativo: string;
-            const ContatosList: string;
-            const EnderecosList: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace FornecedoresService {
-        const baseUrl = "Clinica/Fornecedores";
-        function Create(request: Serenity.SaveRequest<FornecedoresRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<FornecedoresRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<FornecedoresRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<FornecedoresRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class PacientesConveniosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface PacientesConveniosForm {
-        PacienteId: Serenity.LookupEditor;
-        ConvenioId: Serenity.LookupEditor;
-        SubConvenioId: Serenity.IntegerEditor;
-        ConvenioPrincipal: Serenity.BooleanEditor;
-        DescricaoPlano: Serenity.StringEditor;
-        Carteirinha: Serenity.StringEditor;
-        DataValidadeCarteirinha: Serenity.DateEditor;
-        NomePacienteConvenio: Serenity.StringEditor;
-        Inativo: Serenity.BooleanEditor;
-        DataInativo: Serenity.DateTimeEditor;
-        ImagemCarteirinha: Serenity.MultipleImageUploadEditor;
-        DataCadastro: Serenity.DateTimeEditor;
-        DataUltimaAtualizacao: Serenity.DateTimeEditor;
-        Observacao: Serenity.TextAreaEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface PacientesConveniosRow {
-        PacienteConvenioId?: number;
-        PacienteId?: number;
-        ConvenioId?: number;
-        SubConvenioId?: number;
-        ConvenioPrincipal?: boolean;
-        DescricaoPlano?: string;
-        Carteirinha?: string;
-        DataValidadeCarteirinha?: string;
-        NomePacienteConvenio?: string;
-        Inativo?: boolean;
-        DataInativo?: string;
-        ImagemCarteirinha?: string;
-        DataCadastro?: string;
-        DataUltimaAtualizacao?: string;
-        Observacao?: string;
-        ConvenioRazaoSocial?: string;
-        ConvenioNomeFantasia?: string;
-    }
-    namespace PacientesConveniosRow {
-        const idProperty = "PacienteConvenioId";
-        const nameProperty = "DescricaoPlano";
-        const localTextPrefix = "Clinica.PacientesConvenios";
-        const lookupKey = "Clinica.PacientesConvenios";
-        namespace Fields {
-            const PacienteConvenioId: string;
-            const PacienteId: string;
-            const ConvenioId: string;
-            const SubConvenioId: string;
-            const ConvenioPrincipal: string;
-            const DescricaoPlano: string;
-            const Carteirinha: string;
-            const DataValidadeCarteirinha: string;
-            const NomePacienteConvenio: string;
-            const Inativo: string;
-            const DataInativo: string;
-            const ImagemCarteirinha: string;
-            const DataCadastro: string;
-            const DataUltimaAtualizacao: string;
-            const Observacao: string;
-            const ConvenioRazaoSocial: string;
-            const ConvenioNomeFantasia: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace PacientesConveniosService {
-        const baseUrl = "Clinica/PacientesConvenios";
-        function Create(request: Serenity.SaveRequest<PacientesConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<PacientesConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PacientesConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PacientesConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class PacientesEmissaoNfForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface PacientesEmissaoNfForm {
-        PacienteId: Serenity.LookupEditor;
-        NomeResponsavel: Serenity.StringEditor;
-        PessoaJuridica: Serenity.BooleanEditor;
-        CpfResponsavel: Serenity.MaskedEditor;
-        CnpjResponsavel: Serenity.MaskedEditor;
-        EmailNf: Serenity.EmailEditor;
-        Padrao: Serenity.BooleanEditor;
-        TipoEnderecoId: Serenity.LookupEditor;
-        Cep: Serenity.MaskedEditor;
-        Rua: Serenity.StringEditor;
-        Numero: Serenity.StringEditor;
-        Complemento: Serenity.StringEditor;
-        Bairro: Serenity.StringEditor;
-        Cidade: Serenity.StringEditor;
-        CodigoIbgeCidade: Serenity.StringEditor;
-        Estado: Serenity.StringEditor;
-        CodigoIbgeEstado: Serenity.StringEditor;
-        Pais: Serenity.StringEditor;
-        Referencia: Serenity.TextAreaEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface PacientesEmissaoNfRow {
-        PacienteEmissaoNf?: number;
-        PacienteId?: number;
-        NomeResponsavel?: string;
-        PessoaJuridica?: boolean;
-        CpfResponsavel?: string;
-        CnpjResponsavel?: string;
-        EmailNf?: string;
-        Padrao?: boolean;
-        TipoEnderecoId?: number;
-        Rua?: string;
-        Numero?: string;
-        Complemento?: string;
-        Bairro?: string;
-        Cidade?: string;
-        CodigoIbgeCidade?: string;
-        Estado?: string;
-        CodigoIbgeEstado?: string;
-        Pais?: string;
-        Cep?: string;
-        Referencia?: string;
-        PacienteMatricula?: string;
-        Paciente?: string;
-        TipoEndereco?: string;
-        TipoEnderecoPessoaFisica?: boolean;
-        TipoEnderecoOrdem?: number;
-    }
-    namespace PacientesEmissaoNfRow {
-        const idProperty = "PacienteEmissaoNf";
-        const nameProperty = "NomeResponsavel";
-        const localTextPrefix = "Clinica.PacientesEmissaoNf";
-        const lookupKey = "Clinica.PacientesEmissaoNf";
-        namespace Fields {
-            const PacienteEmissaoNf: string;
-            const PacienteId: string;
-            const NomeResponsavel: string;
-            const PessoaJuridica: string;
-            const CpfResponsavel: string;
-            const CnpjResponsavel: string;
-            const EmailNf: string;
-            const Padrao: string;
-            const TipoEnderecoId: string;
-            const Rua: string;
-            const Numero: string;
-            const Complemento: string;
-            const Bairro: string;
-            const Cidade: string;
-            const CodigoIbgeCidade: string;
-            const Estado: string;
-            const CodigoIbgeEstado: string;
-            const Pais: string;
-            const Cep: string;
-            const Referencia: string;
-            const PacienteMatricula: string;
-            const Paciente: string;
-            const TipoEndereco: string;
-            const TipoEnderecoPessoaFisica: string;
-            const TipoEnderecoOrdem: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace PacientesEmissaoNfService {
-        const baseUrl = "Clinica/PacientesEmissaoNf";
-        function Create(request: Serenity.SaveRequest<PacientesEmissaoNfRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<PacientesEmissaoNfRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PacientesEmissaoNfRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PacientesEmissaoNfRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    class PacientesForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface PacientesForm {
-        PacienteIdControlMedic: Serenity.IntegerEditor;
-        PacienteIdGestorMedico: Serenity.IntegerEditor;
-        DataCadastro: Serenity.DateTimeEditor;
-        DataUltimaAtualizacao: Serenity.DateTimeEditor;
-        Matricula: Serenity.StringEditor;
-        StatusId: Serenity.LookupEditor;
-        Paciente: Serenity.StringEditor;
-        SexoId: Serenity.LookupEditor;
-        DataNascimento: Serenity.DateEditor;
-        Especial: Serenity.BooleanEditor;
-        Pai: Serenity.StringEditor;
-        Mae: Serenity.StringEditor;
-        Responsavel: Serenity.StringEditor;
-        CNS: Serenity.StringEditor;
-        CarteiraIdentidade: Serenity.StringEditor;
-        CPF: Serenity.MaskedEditor;
-        Observacao: Serenity.TextAreaEditor;
-        DisturbiosAssociados: Serenity.TextAreaEditor;
-        Foto: Serenity.ImageUploadEditor;
-        DataFoto: Serenity.DateEditor;
-        ContatosList: Serenity.StringEditor;
-        EnderecosList: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface PacientesRow {
-        PacienteId?: number;
-        DataCadastro?: string;
-        DataUltimaAtualizacao?: string;
-        Matricula?: string;
-        StatusId?: number;
-        Paciente?: string;
-        Especial?: boolean;
-        Pai?: string;
-        Mae?: string;
-        SexoId?: number;
-        DataNascimento?: string;
-        CNS?: string;
-        CarteiraIdentidade?: string;
-        CPF?: string;
-        Observacao?: string;
-        DisturbiosAssociados?: string;
-        Responsavel?: string;
-        Foto?: string;
-        DataFoto?: string;
-        PacienteIdControlMedic?: number;
-        PacienteIdGestorMedico?: number;
-        ContatosList?: ContatosRow[];
-        EnderecosList?: EnderecosRow[];
-        Sexo?: string;
-        SexoAbreviatura?: string;
-        Status?: string;
-    }
-    namespace PacientesRow {
-        const idProperty = "PacienteId";
-        const nameProperty = "Paciente";
-        const localTextPrefix = "Clinica.Pacientes";
-        const lookupKey = "Clinica.Pacientes";
-        namespace Fields {
-            const PacienteId: string;
-            const DataCadastro: string;
-            const DataUltimaAtualizacao: string;
-            const Matricula: string;
-            const StatusId: string;
-            const Paciente: string;
-            const Especial: string;
-            const Pai: string;
-            const Mae: string;
-            const SexoId: string;
-            const DataNascimento: string;
-            const CNS: string;
-            const CarteiraIdentidade: string;
-            const CPF: string;
-            const Observacao: string;
-            const DisturbiosAssociados: string;
-            const Responsavel: string;
-            const Foto: string;
-            const DataFoto: string;
-            const PacienteIdControlMedic: string;
-            const PacienteIdGestorMedico: string;
-            const ContatosList: string;
-            const EnderecosList: string;
-            const Sexo: string;
-            const SexoAbreviatura: string;
-            const Status: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace PacientesService {
-        const baseUrl = "Clinica/Pacientes";
-        function Create(request: Serenity.SaveRequest<PacientesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<PacientesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PacientesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PacientesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class SexoForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface SexoForm {
-        Sexo: Serenity.StringEditor;
-        Abreviatura: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface SexoRow {
-        SexoId?: number;
-        Sexo?: string;
-        Abreviatura?: string;
-    }
-    namespace SexoRow {
-        const idProperty = "SexoId";
-        const nameProperty = "Sexo";
-        const localTextPrefix = "Clinica.Sexo";
-        const lookupKey = "Clinica.Sexo";
-        namespace Fields {
-            const SexoId: string;
-            const Sexo: string;
-            const Abreviatura: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace SexoService {
-        const baseUrl = "Clinica/Sexo";
-        function Create(request: Serenity.SaveRequest<SexoRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<SexoRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<SexoRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SexoRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class StatusForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface StatusForm {
-        Status: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface StatusRow {
-        StatusId?: number;
-        Status?: string;
-    }
-    namespace StatusRow {
-        const idProperty = "StatusId";
-        const nameProperty = "Status";
-        const localTextPrefix = "Clinica.Status";
-        const lookupKey = "Clinica.Status";
-        namespace Fields {
-            const StatusId: string;
-            const Status: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace StatusService {
-        const baseUrl = "Clinica/Status";
-        function Create(request: Serenity.SaveRequest<StatusRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<StatusRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<StatusRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<StatusRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class TiposContatosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface TiposContatosForm {
-        TipoContato: Serenity.StringEditor;
-        PessoaFisica: Serenity.BooleanEditor;
-        Ordem: Serenity.IntegerEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface TiposContatosRow {
-        TipoContatoId?: number;
-        TipoContato?: string;
-        PessoaFisica?: boolean;
-        Ordem?: number;
-    }
-    namespace TiposContatosRow {
-        const idProperty = "TipoContatoId";
-        const nameProperty = "TipoContato";
-        const localTextPrefix = "Clinica.TiposContatos";
-        const lookupKey = "Clinica.TiposContatos";
-        namespace Fields {
-            const TipoContatoId: string;
-            const TipoContato: string;
-            const PessoaFisica: string;
-            const Ordem: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace TiposContatosService {
-        const baseUrl = "Clinica/TiposContatos";
-        function Create(request: Serenity.SaveRequest<TiposContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<TiposContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TiposContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TiposContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class TiposEnderecosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface TiposEnderecosForm {
-        TipoEndereco: Serenity.StringEditor;
-        PessoaFisica: Serenity.BooleanEditor;
-        Ordem: Serenity.IntegerEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface TiposEnderecosRow {
-        TipoEnderecoId?: number;
-        TipoEndereco?: string;
-        PessoaFisica?: boolean;
-        Ordem?: number;
-    }
-    namespace TiposEnderecosRow {
-        const idProperty = "TipoEnderecoId";
-        const nameProperty = "TipoEndereco";
-        const localTextPrefix = "Clinica.TiposEnderecos";
-        const lookupKey = "Clinica.TiposEnderecos";
-        namespace Fields {
-            const TipoEnderecoId: string;
-            const TipoEndereco: string;
-            const PessoaFisica: string;
-            const Ordem: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace TiposEnderecosService {
-        const baseUrl = "Clinica/TiposEnderecos";
-        function Create(request: Serenity.SaveRequest<TiposEnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<TiposEnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TiposEnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TiposEnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-}
-declare namespace Exemplos.Clinica {
-    class TiposMeiosContatosForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface TiposMeiosContatosForm {
-        TipoMeioContato: Serenity.StringEditor;
-        Mascara: Serenity.StringEditor;
-    }
-}
-declare namespace Exemplos.Clinica {
-    interface TiposMeiosContatosRow {
-        TipoMeioContatoId?: number;
-        TipoMeioContato?: string;
-        Mascara?: string;
-    }
-    namespace TiposMeiosContatosRow {
-        const idProperty = "TipoMeioContatoId";
-        const nameProperty = "TipoMeioContato";
-        const localTextPrefix = "Clinica.TiposMeiosContatos";
-        const lookupKey = "Clinica.TiposMeiosContatos";
-        namespace Fields {
-            const TipoMeioContatoId: string;
-            const TipoMeioContato: string;
-            const Mascara: string;
-        }
-    }
-}
-declare namespace Exemplos.Clinica {
-    namespace TiposMeiosContatosService {
-        const baseUrl = "Clinica/TiposMeiosContatos";
-        function Create(request: Serenity.SaveRequest<TiposMeiosContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<TiposMeiosContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TiposMeiosContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TiposMeiosContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Exemplos.Common.Pages {
-    interface UploadResponse extends Serenity.ServiceResponse {
-        TemporaryFile?: string;
-        Size?: number;
-        IsImage?: boolean;
-        Width?: number;
-        Height?: number;
-    }
-}
-declare namespace Exemplos.Common {
-    interface UserPreferenceRetrieveRequest extends Serenity.ServiceRequest {
-        PreferenceType?: string;
-        Name?: string;
-    }
-}
-declare namespace Exemplos.Common {
-    interface UserPreferenceRetrieveResponse extends Serenity.ServiceResponse {
-        Value?: string;
-    }
-}
-declare namespace Exemplos.Common {
-    interface UserPreferenceRow {
-        UserPreferenceId?: number;
-        UserId?: number;
-        PreferenceType?: string;
-        Name?: string;
-        Value?: string;
-    }
-    namespace UserPreferenceRow {
-        const idProperty = "UserPreferenceId";
-        const nameProperty = "Name";
-        const localTextPrefix = "Common.UserPreference";
-        namespace Fields {
-            const UserPreferenceId: string;
-            const UserId: string;
-            const PreferenceType: string;
-            const Name: string;
-            const Value: string;
-        }
-    }
-}
-declare namespace Exemplos.Common {
-    namespace UserPreferenceService {
-        const baseUrl = "Common/UserPreference";
-        function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: Serenity.ServiceResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const Retrieve: string;
-        }
-    }
-}
-declare namespace Exemplos.Common {
-    interface UserPreferenceUpdateRequest extends Serenity.ServiceRequest {
-        PreferenceType?: string;
-        Name?: string;
-        Value?: string;
-    }
-}
-declare namespace Exemplos {
-    interface ExcelImportRequest extends Serenity.ServiceRequest {
-        FileName?: string;
-    }
-}
-declare namespace Exemplos {
-    interface ExcelImportResponse extends Serenity.ServiceResponse {
-        Inserted?: number;
-        Updated?: number;
-        ErrorList?: string[];
-    }
-}
-declare namespace Exemplos {
-    interface GetNextNumberRequest extends Serenity.ServiceRequest {
-        Prefix?: string;
-        Length?: number;
-    }
-}
-declare namespace Exemplos {
-    interface GetNextNumberResponse extends Serenity.ServiceResponse {
-        Number?: number;
-        Serial?: string;
-    }
-}
-declare namespace Exemplos.Membership {
-    class ChangePasswordForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ChangePasswordForm {
-        OldPassword: Serenity.PasswordEditor;
-        NewPassword: Serenity.PasswordEditor;
-        ConfirmPassword: Serenity.PasswordEditor;
-    }
-}
-declare namespace Exemplos.Membership {
-    interface ChangePasswordRequest extends Serenity.ServiceRequest {
-        OldPassword?: string;
-        NewPassword?: string;
-        ConfirmPassword?: string;
-    }
-}
-declare namespace Exemplos.Membership {
-    class ForgotPasswordForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ForgotPasswordForm {
-        Email: Serenity.EmailEditor;
-    }
-}
-declare namespace Exemplos.Membership {
-    interface ForgotPasswordRequest extends Serenity.ServiceRequest {
-        Email?: string;
-    }
-}
-declare namespace Exemplos.Membership {
-    class LoginForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface LoginForm {
-        Username: Serenity.StringEditor;
-        Password: Serenity.PasswordEditor;
-    }
-}
-declare namespace Exemplos.Membership {
-    interface LoginRequest extends Serenity.ServiceRequest {
-        Username?: string;
-        Password?: string;
-    }
-}
-declare namespace Exemplos.Membership {
-    class ResetPasswordForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ResetPasswordForm {
-        NewPassword: Serenity.PasswordEditor;
-        ConfirmPassword: Serenity.PasswordEditor;
-    }
-}
-declare namespace Exemplos.Membership {
-    interface ResetPasswordRequest extends Serenity.ServiceRequest {
-        Token?: string;
-        NewPassword?: string;
-        ConfirmPassword?: string;
-    }
-}
-declare namespace Exemplos.Membership {
-    class SignUpForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface SignUpForm {
-        DisplayName: Serenity.StringEditor;
-        Email: Serenity.EmailEditor;
-        ConfirmEmail: Serenity.EmailEditor;
-        Password: Serenity.PasswordEditor;
-        ConfirmPassword: Serenity.PasswordEditor;
-    }
-}
-declare namespace Exemplos.Membership {
-    interface SignUpRequest extends Serenity.ServiceRequest {
-        DisplayName?: string;
-        Email?: string;
-        Password?: string;
-    }
-}
-declare namespace Exemplos {
-    interface ScriptUserDefinition {
-        Username?: string;
-        DisplayName?: string;
-        IsAdmin?: boolean;
-        Permissions?: {
-            [key: string]: boolean;
-        };
-    }
-}
 declare namespace Exemplos.Administration {
 }
 declare namespace Exemplos.Administration {
@@ -9075,5 +6362,2718 @@ declare namespace Exemplos {
         Permissions?: {
             [key: string]: boolean;
         };
+    }
+}
+declare namespace Exemplos.Administration {
+}
+declare namespace Exemplos.Administration {
+    class LanguageForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface LanguageForm {
+        LanguageId: Serenity.StringEditor;
+        LanguageName: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface LanguageRow {
+        Id?: number;
+        LanguageId?: string;
+        LanguageName?: string;
+    }
+    namespace LanguageRow {
+        const idProperty = "Id";
+        const nameProperty = "LanguageName";
+        const localTextPrefix = "Administration.Language";
+        const lookupKey = "Administration.Language";
+        namespace Fields {
+            const Id: string;
+            const LanguageId: string;
+            const LanguageName: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace LanguageService {
+        const baseUrl = "Administration/Language";
+        function Create(request: Serenity.SaveRequest<LanguageRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<LanguageRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<LanguageRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<LanguageRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+}
+declare namespace Exemplos.Administration {
+    class RoleForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface RoleForm {
+        RoleName: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface RolePermissionListRequest extends Serenity.ServiceRequest {
+        RoleID?: number;
+        Module?: string;
+        Submodule?: string;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface RolePermissionListResponse extends Serenity.ListResponse<string> {
+    }
+}
+declare namespace Exemplos.Administration {
+    interface RolePermissionRow {
+        RolePermissionId?: number;
+        RoleId?: number;
+        PermissionKey?: string;
+        RoleRoleName?: string;
+    }
+    namespace RolePermissionRow {
+        const idProperty = "RolePermissionId";
+        const nameProperty = "PermissionKey";
+        const localTextPrefix = "Administration.RolePermission";
+        namespace Fields {
+            const RolePermissionId: string;
+            const RoleId: string;
+            const PermissionKey: string;
+            const RoleRoleName: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace RolePermissionService {
+        const baseUrl = "Administration/RolePermission";
+        function Update(request: RolePermissionUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Update: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    interface RolePermissionUpdateRequest extends Serenity.ServiceRequest {
+        RoleID?: number;
+        Module?: string;
+        Submodule?: string;
+        Permissions?: string[];
+    }
+}
+declare namespace Exemplos.Administration {
+    interface RoleRow {
+        RoleId?: number;
+        RoleName?: string;
+    }
+    namespace RoleRow {
+        const idProperty = "RoleId";
+        const nameProperty = "RoleName";
+        const localTextPrefix = "Administration.Role";
+        const lookupKey = "Administration.Role";
+        namespace Fields {
+            const RoleId: string;
+            const RoleName: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace RoleService {
+        const baseUrl = "Administration/Role";
+        function Create(request: Serenity.SaveRequest<RoleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<RoleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RoleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RoleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    interface TranslationItem {
+        Key?: string;
+        SourceText?: string;
+        TargetText?: string;
+        CustomText?: string;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface TranslationListRequest extends Serenity.ListRequest {
+        SourceLanguageID?: string;
+        TargetLanguageID?: string;
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace TranslationService {
+        const baseUrl = "Administration/Translation";
+        function List(request: TranslationListRequest, onSuccess?: (response: Serenity.ListResponse<TranslationItem>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: TranslationUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const List: string;
+            const Update: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    interface TranslationUpdateRequest extends Serenity.ServiceRequest {
+        TargetLanguageID?: string;
+        Translations?: {
+            [key: string]: string;
+        };
+    }
+}
+declare namespace Exemplos.Administration {
+}
+declare namespace Exemplos.Administration {
+    class UserForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface UserForm {
+        Username: Serenity.StringEditor;
+        DisplayName: Serenity.StringEditor;
+        Email: Serenity.EmailEditor;
+        UserImage: Serenity.ImageUploadEditor;
+        Password: Serenity.PasswordEditor;
+        PasswordConfirm: Serenity.PasswordEditor;
+        Source: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserPermissionListRequest extends Serenity.ServiceRequest {
+        UserID?: number;
+        Module?: string;
+        Submodule?: string;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserPermissionRow {
+        UserPermissionId?: number;
+        UserId?: number;
+        PermissionKey?: string;
+        Granted?: boolean;
+        Username?: string;
+        User?: string;
+    }
+    namespace UserPermissionRow {
+        const idProperty = "UserPermissionId";
+        const nameProperty = "PermissionKey";
+        const localTextPrefix = "Administration.UserPermission";
+        namespace Fields {
+            const UserPermissionId: string;
+            const UserId: string;
+            const PermissionKey: string;
+            const Granted: string;
+            const Username: string;
+            const User: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace UserPermissionService {
+        const baseUrl = "Administration/UserPermission";
+        function Update(request: UserPermissionUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<UserPermissionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function ListRolePermissions(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function ListPermissionKeys(request: Serenity.ServiceRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Update: string;
+            const List: string;
+            const ListRolePermissions: string;
+            const ListPermissionKeys: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserPermissionUpdateRequest extends Serenity.ServiceRequest {
+        UserID?: number;
+        Module?: string;
+        Submodule?: string;
+        Permissions?: UserPermissionRow[];
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserRoleListRequest extends Serenity.ServiceRequest {
+        UserID?: number;
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserRoleListResponse extends Serenity.ListResponse<number> {
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserRoleRow {
+        UserRoleId?: number;
+        UserId?: number;
+        RoleId?: number;
+        Username?: string;
+        User?: string;
+    }
+    namespace UserRoleRow {
+        const idProperty = "UserRoleId";
+        const localTextPrefix = "Administration.UserRole";
+        namespace Fields {
+            const UserRoleId: string;
+            const UserId: string;
+            const RoleId: string;
+            const Username: string;
+            const User: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace UserRoleService {
+        const baseUrl = "Administration/UserRole";
+        function Update(request: UserRoleUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Update: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserRoleUpdateRequest extends Serenity.ServiceRequest {
+        UserID?: number;
+        Roles?: number[];
+    }
+}
+declare namespace Exemplos.Administration {
+    interface UserRow {
+        UserId?: number;
+        Username?: string;
+        Source?: string;
+        PasswordHash?: string;
+        PasswordSalt?: string;
+        DisplayName?: string;
+        Email?: string;
+        UserImage?: string;
+        LastDirectoryUpdate?: string;
+        IsActive?: number;
+        Password?: string;
+        PasswordConfirm?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
+    }
+    namespace UserRow {
+        const idProperty = "UserId";
+        const isActiveProperty = "IsActive";
+        const nameProperty = "Username";
+        const localTextPrefix = "Administration.User";
+        const lookupKey = "Administration.User";
+        namespace Fields {
+            const UserId: string;
+            const Username: string;
+            const Source: string;
+            const PasswordHash: string;
+            const PasswordSalt: string;
+            const DisplayName: string;
+            const Email: string;
+            const UserImage: string;
+            const LastDirectoryUpdate: string;
+            const IsActive: string;
+            const Password: string;
+            const PasswordConfirm: string;
+            const InsertUserId: string;
+            const InsertDate: string;
+            const UpdateUserId: string;
+            const UpdateDate: string;
+        }
+    }
+}
+declare namespace Exemplos.Administration {
+    namespace UserService {
+        const baseUrl = "Administration/User";
+        function Create(request: Serenity.SaveRequest<UserRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<UserRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Undelete(request: Serenity.UndeleteRequest, onSuccess?: (response: Serenity.UndeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<UserRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<UserRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Undelete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class ContatosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ContatosForm {
+        Tratamento: Serenity.StringEditor;
+        Nome: Serenity.StringEditor;
+        Departamento: Serenity.StringEditor;
+        TipoContatoId: Serenity.LookupEditor;
+        TipoMeioContatoId: Serenity.LookupEditor;
+        ConteudoMeioContato: Serenity.MaskedEditor;
+        Email: Serenity.EmailEditor;
+        ObservacoesContato: Serenity.TextAreaEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface ContatosRow {
+        ContatoId?: number;
+        PacienteId?: number;
+        ConvenioId?: number;
+        ProfissionalId?: number;
+        FornecedorId?: number;
+        Tratamento?: string;
+        Nome?: string;
+        Departamento?: string;
+        TipoContatoId?: number;
+        TipoMeioContatoId?: number;
+        ConteudoMeioContato?: string;
+        Email?: string;
+        ObservacoesContato?: string;
+        TipoContato?: string;
+        TipoContatoPessoaFisica?: boolean;
+        TipoContatoOrdem?: number;
+        TipoMeioContato?: string;
+    }
+    namespace ContatosRow {
+        const idProperty = "ContatoId";
+        const nameProperty = "Nome";
+        const localTextPrefix = "Clinica.Contatos";
+        namespace Fields {
+            const ContatoId: string;
+            const PacienteId: string;
+            const ConvenioId: string;
+            const ProfissionalId: string;
+            const FornecedorId: string;
+            const Tratamento: string;
+            const Nome: string;
+            const Departamento: string;
+            const TipoContatoId: string;
+            const TipoMeioContatoId: string;
+            const ConteudoMeioContato: string;
+            const Email: string;
+            const ObservacoesContato: string;
+            const TipoContato: string;
+            const TipoContatoPessoaFisica: string;
+            const TipoContatoOrdem: string;
+            const TipoMeioContato: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace ContatosService {
+        const baseUrl = "Clinica/Contatos";
+        function Create(request: Serenity.SaveRequest<ContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class ConveniosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ConveniosForm {
+        Cnpj: Serenity.MaskedEditor;
+        RazaoSocial: Serenity.StringEditor;
+        NomeFantasia: Serenity.StringEditor;
+        CodigoAns: Serenity.StringEditor;
+        CadastroConvenio: Serenity.StringEditor;
+        Logo: Serenity.StringEditor;
+        InscricaoMunicipal: Serenity.StringEditor;
+        InscricaoEstadual: Serenity.StringEditor;
+        Site: Serenity.StringEditor;
+        DataInicio: Serenity.DateTimeEditor;
+        Inativo: Serenity.BooleanEditor;
+        DataFim: Serenity.DateTimeEditor;
+        MotivoCancelamento: Serenity.TextAreaEditor;
+        Observacao: Serenity.TextAreaEditor;
+        VersaoTiss: Serenity.StringEditor;
+        WebService: Serenity.StringEditor;
+        SadtSolContratadoId: Serenity.StringEditor;
+        SadtExecutanteId: Serenity.StringEditor;
+        SadtProfissionalexecutante: Serenity.StringEditor;
+        SadtMembroEquipe: Serenity.StringEditor;
+        IdOrigem: Serenity.StringEditor;
+        IdDestino: Serenity.StringEditor;
+        OrigemIdPrestador: Serenity.StringEditor;
+        DestinoIdPrestador: Serenity.StringEditor;
+        IdLogo: Serenity.IntegerEditor;
+        GeraTiss: Serenity.BooleanEditor;
+        DataCadastro: Serenity.DateTimeEditor;
+        DataUltimaAtualizacao: Serenity.DateTimeEditor;
+        Latitude: Serenity.TextAreaEditor;
+        Longitude: Serenity.TextAreaEditor;
+        EmailNotaFiscal: Serenity.EmailEditor;
+        EmailContato: Serenity.EmailEditor;
+        EmailFaturamento: Serenity.EmailEditor;
+        EmailGlosa: Serenity.EmailEditor;
+        ContatosList: ContatosEditor;
+        EnderecosList: EnderecosEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface ConveniosRow {
+        ConvenioId?: number;
+        Cnpj?: string;
+        RazaoSocial?: string;
+        NomeFantasia?: string;
+        CodigoAns?: string;
+        CadastroConvenio?: string;
+        Logo?: string;
+        InscricaoMunicipal?: string;
+        InscricaoEstadual?: string;
+        Site?: string;
+        DataInicio?: string;
+        Inativo?: boolean;
+        DataFim?: string;
+        MotivoCancelamento?: string;
+        Observacao?: string;
+        VersaoTiss?: string;
+        WebService?: string;
+        SadtSolContratadoId?: string;
+        SadtExecutanteId?: string;
+        SadtProfissionalexecutante?: string;
+        SadtMembroEquipe?: string;
+        IdOrigem?: string;
+        IdDestino?: string;
+        OrigemIdPrestador?: string;
+        DestinoIdPrestador?: string;
+        IdLogo?: number;
+        GeraTiss?: boolean;
+        DataCadastro?: string;
+        DataUltimaAtualizacao?: string;
+        Latitude?: string;
+        Longitude?: string;
+        EmailNotaFiscal?: string;
+        EmailContato?: string;
+        EmailFaturamento?: string;
+        EmailGlosa?: string;
+        ContatosList?: ContatosRow[];
+        EnderecosList?: EnderecosRow[];
+    }
+    namespace ConveniosRow {
+        const idProperty = "ConvenioId";
+        const nameProperty = "NomeFantasia";
+        const localTextPrefix = "Clinica.Convenios";
+        const lookupKey = "Clinica.Convenios";
+        namespace Fields {
+            const ConvenioId: string;
+            const Cnpj: string;
+            const RazaoSocial: string;
+            const NomeFantasia: string;
+            const CodigoAns: string;
+            const CadastroConvenio: string;
+            const Logo: string;
+            const InscricaoMunicipal: string;
+            const InscricaoEstadual: string;
+            const Site: string;
+            const DataInicio: string;
+            const Inativo: string;
+            const DataFim: string;
+            const MotivoCancelamento: string;
+            const Observacao: string;
+            const VersaoTiss: string;
+            const WebService: string;
+            const SadtSolContratadoId: string;
+            const SadtExecutanteId: string;
+            const SadtProfissionalexecutante: string;
+            const SadtMembroEquipe: string;
+            const IdOrigem: string;
+            const IdDestino: string;
+            const OrigemIdPrestador: string;
+            const DestinoIdPrestador: string;
+            const IdLogo: string;
+            const GeraTiss: string;
+            const DataCadastro: string;
+            const DataUltimaAtualizacao: string;
+            const Latitude: string;
+            const Longitude: string;
+            const EmailNotaFiscal: string;
+            const EmailContato: string;
+            const EmailFaturamento: string;
+            const EmailGlosa: string;
+            const ContatosList: string;
+            const EnderecosList: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace ConveniosService {
+        const baseUrl = "Clinica/Convenios";
+        function Create(request: Serenity.SaveRequest<ConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class EnderecosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface EnderecosForm {
+        TipoEnderecoId: Serenity.LookupEditor;
+        Cep: Serenity.MaskedEditor;
+        Rua: Serenity.StringEditor;
+        Numero: Serenity.StringEditor;
+        Complemento: Serenity.StringEditor;
+        Bairro: Serenity.StringEditor;
+        Cidade: Serenity.StringEditor;
+        CodigoIbgeCidade: Serenity.StringEditor;
+        Estado: Serenity.StringEditor;
+        CodigoIbgeEstado: Serenity.StringEditor;
+        Pais: Serenity.StringEditor;
+        Referencia: Serenity.StringEditor;
+        Observacao: Serenity.TextAreaEditor;
+        Latitude: Serenity.StringEditor;
+        Longitude: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface EnderecosRow {
+        EnderecoId?: number;
+        PacienteId?: number;
+        ConvenioId?: number;
+        ProfissionalId?: number;
+        FornecedorId?: number;
+        TipoEnderecoId?: number;
+        Rua?: string;
+        Numero?: string;
+        Complemento?: string;
+        Bairro?: string;
+        Cidade?: string;
+        CodigoIbgeCidade?: string;
+        Estado?: string;
+        CodigoIbgeEstado?: string;
+        Pais?: string;
+        Cep?: string;
+        Referencia?: string;
+        Observacao?: string;
+        Latitude?: string;
+        Longitude?: string;
+        TipoEndereco?: string;
+        TipoEnderecoPessoaFisica?: boolean;
+        TipoEnderecoOrdem?: number;
+    }
+    namespace EnderecosRow {
+        const idProperty = "EnderecoId";
+        const nameProperty = "Rua";
+        const localTextPrefix = "Clinica.Enderecos";
+        const lookupKey = "Clinica.Enderecos";
+        namespace Fields {
+            const EnderecoId: string;
+            const PacienteId: string;
+            const ConvenioId: string;
+            const ProfissionalId: string;
+            const FornecedorId: string;
+            const TipoEnderecoId: string;
+            const Rua: string;
+            const Numero: string;
+            const Complemento: string;
+            const Bairro: string;
+            const Cidade: string;
+            const CodigoIbgeCidade: string;
+            const Estado: string;
+            const CodigoIbgeEstado: string;
+            const Pais: string;
+            const Cep: string;
+            const Referencia: string;
+            const Observacao: string;
+            const Latitude: string;
+            const Longitude: string;
+            const TipoEndereco: string;
+            const TipoEnderecoPessoaFisica: string;
+            const TipoEnderecoOrdem: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace EnderecosService {
+        const baseUrl = "Clinica/Enderecos";
+        function Create(request: Serenity.SaveRequest<EnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<EnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class EstadosCivisForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface EstadosCivisForm {
+        Descricao: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface EstadosCivisRow {
+        EstadoCivilId?: number;
+        Descricao?: string;
+    }
+    namespace EstadosCivisRow {
+        const idProperty = "EstadoCivilId";
+        const nameProperty = "Descricao";
+        const localTextPrefix = "Clinica.EstadosCivis";
+        const lookupKey = "Clinica.EstadosCivis";
+        namespace Fields {
+            const EstadoCivilId: string;
+            const Descricao: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace EstadosCivisService {
+        const baseUrl = "Clinica/EstadosCivis";
+        function Create(request: Serenity.SaveRequest<EstadosCivisRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<EstadosCivisRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EstadosCivisRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EstadosCivisRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class ExceptionsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ExceptionsForm {
+        Guid: Serenity.StringEditor;
+        ApplicationName: Serenity.StringEditor;
+        MachineName: Serenity.StringEditor;
+        CreationDate: Serenity.DateTimeEditor;
+        Type: Serenity.StringEditor;
+        IsProtected: Serenity.BooleanEditor;
+        Host: Serenity.StringEditor;
+        Url: Serenity.TextAreaEditor;
+        HttpMethod: Serenity.StringEditor;
+        IpAddress: Serenity.StringEditor;
+        Source: Serenity.StringEditor;
+        Message: Serenity.TextAreaEditor;
+        Detail: Serenity.StringEditor;
+        StatusCode: Serenity.IntegerEditor;
+        Sql: Serenity.StringEditor;
+        DeletionDate: Serenity.DateTimeEditor;
+        FullJson: Serenity.StringEditor;
+        ErrorHash: Serenity.IntegerEditor;
+        DuplicateCount: Serenity.IntegerEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface ExceptionsRow {
+        Id?: number;
+        Guid?: string;
+        ApplicationName?: string;
+        MachineName?: string;
+        CreationDate?: string;
+        Type?: string;
+        IsProtected?: boolean;
+        Host?: string;
+        Url?: string;
+        HttpMethod?: string;
+        IpAddress?: string;
+        Source?: string;
+        Message?: string;
+        Detail?: string;
+        StatusCode?: number;
+        Sql?: string;
+        DeletionDate?: string;
+        FullJson?: string;
+        ErrorHash?: number;
+        DuplicateCount?: number;
+    }
+    namespace ExceptionsRow {
+        const idProperty = "Id";
+        const nameProperty = "ApplicationName";
+        const localTextPrefix = "Clinica.Exceptions";
+        const lookupKey = "Clinica.Exceptions";
+        namespace Fields {
+            const Id: string;
+            const Guid: string;
+            const ApplicationName: string;
+            const MachineName: string;
+            const CreationDate: string;
+            const Type: string;
+            const IsProtected: string;
+            const Host: string;
+            const Url: string;
+            const HttpMethod: string;
+            const IpAddress: string;
+            const Source: string;
+            const Message: string;
+            const Detail: string;
+            const StatusCode: string;
+            const Sql: string;
+            const DeletionDate: string;
+            const FullJson: string;
+            const ErrorHash: string;
+            const DuplicateCount: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace ExceptionsService {
+        const baseUrl = "Clinica/Exceptions";
+        function Create(request: Serenity.SaveRequest<ExceptionsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ExceptionsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ExceptionsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ExceptionsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class FornecedoresForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface FornecedoresForm {
+        Status: Serenity.BooleanEditor;
+        PessoaJuridica: Serenity.BooleanEditor;
+        RazaoSocial: Serenity.TextAreaEditor;
+        NomeFantasia: Serenity.TextAreaEditor;
+        NomeAbreviado: Serenity.StringEditor;
+        Cpf: Serenity.MaskedEditor;
+        Rg: Serenity.StringEditor;
+        Cnpj: Serenity.MaskedEditor;
+        InscricaoEstadual: Serenity.TextAreaEditor;
+        InscricaoMunicipal: Serenity.TextAreaEditor;
+        Site: Serenity.TextAreaEditor;
+        Telefone: Serenity.MaskedEditor;
+        Fax: Serenity.TextAreaEditor;
+        TelefoneAlternativo: Serenity.MaskedEditor;
+        EmailCorporativo: Serenity.EmailEditor;
+        AceitaReceberEmail: Serenity.BooleanEditor;
+        MotivoStatus: Serenity.TextAreaEditor;
+        QuantidadeEmpregados: Serenity.IntegerEditor;
+        AtividadeEmpresaId: Serenity.IntegerEditor;
+        ReceitaAnual: Serenity.DecimalEditor;
+        MarcasTrabalhadas: Serenity.TextAreaEditor;
+        ObservacoesGerais: Serenity.TextAreaEditor;
+        DataCriacao: Serenity.DateTimeEditor;
+        DataAlteracao: Serenity.DateTimeEditor;
+        Inativo: Serenity.BooleanEditor;
+        DataInativo: Serenity.DateTimeEditor;
+        ContatosList: ContatosEditor;
+        EnderecosList: EnderecosEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface FornecedoresRow {
+        FornecedorId?: number;
+        Status?: boolean;
+        PessoaJuridica?: boolean;
+        RazaoSocial?: string;
+        NomeFantasia?: string;
+        NomeAbreviado?: string;
+        Cpf?: string;
+        Rg?: string;
+        Cnpj?: string;
+        InscricaoEstadual?: string;
+        InscricaoMunicipal?: string;
+        Site?: string;
+        Telefone?: string;
+        Fax?: string;
+        TelefoneAlternativo?: string;
+        EmailCorporativo?: string;
+        AceitaReceberEmail?: boolean;
+        MotivoStatus?: string;
+        QuantidadeEmpregados?: number;
+        AtividadeEmpresaId?: number;
+        ReceitaAnual?: number;
+        MarcasTrabalhadas?: string;
+        ObservacoesGerais?: string;
+        DataCriacao?: string;
+        DataAlteracao?: string;
+        Inativo?: boolean;
+        DataInativo?: string;
+        ContatosList?: ContatosRow[];
+        EnderecosList?: EnderecosRow[];
+    }
+    namespace FornecedoresRow {
+        const idProperty = "FornecedorId";
+        const nameProperty = "RazaoSocial";
+        const localTextPrefix = "Clinica.Fornecedores";
+        const lookupKey = "Clinica.Fornecedores";
+        namespace Fields {
+            const FornecedorId: string;
+            const Status: string;
+            const PessoaJuridica: string;
+            const RazaoSocial: string;
+            const NomeFantasia: string;
+            const NomeAbreviado: string;
+            const Cpf: string;
+            const Rg: string;
+            const Cnpj: string;
+            const InscricaoEstadual: string;
+            const InscricaoMunicipal: string;
+            const Site: string;
+            const Telefone: string;
+            const Fax: string;
+            const TelefoneAlternativo: string;
+            const EmailCorporativo: string;
+            const AceitaReceberEmail: string;
+            const MotivoStatus: string;
+            const QuantidadeEmpregados: string;
+            const AtividadeEmpresaId: string;
+            const ReceitaAnual: string;
+            const MarcasTrabalhadas: string;
+            const ObservacoesGerais: string;
+            const DataCriacao: string;
+            const DataAlteracao: string;
+            const Inativo: string;
+            const DataInativo: string;
+            const ContatosList: string;
+            const EnderecosList: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace FornecedoresService {
+        const baseUrl = "Clinica/Fornecedores";
+        function Create(request: Serenity.SaveRequest<FornecedoresRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<FornecedoresRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<FornecedoresRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<FornecedoresRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class PacientesConveniosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PacientesConveniosForm {
+        PacienteId: Serenity.LookupEditor;
+        ConvenioId: Serenity.LookupEditor;
+        SubConvenioId: Serenity.IntegerEditor;
+        ConvenioPrincipal: Serenity.BooleanEditor;
+        DescricaoPlano: Serenity.StringEditor;
+        Carteirinha: Serenity.StringEditor;
+        DataValidadeCarteirinha: Serenity.DateEditor;
+        NomePacienteConvenio: Serenity.StringEditor;
+        Inativo: Serenity.BooleanEditor;
+        DataInativo: Serenity.DateTimeEditor;
+        ImagemCarteirinha: Serenity.MultipleImageUploadEditor;
+        DataCadastro: Serenity.DateTimeEditor;
+        DataUltimaAtualizacao: Serenity.DateTimeEditor;
+        Observacao: Serenity.TextAreaEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface PacientesConveniosRow {
+        PacienteConvenioId?: number;
+        PacienteId?: number;
+        ConvenioId?: number;
+        SubConvenioId?: number;
+        ConvenioPrincipal?: boolean;
+        DescricaoPlano?: string;
+        Carteirinha?: string;
+        DataValidadeCarteirinha?: string;
+        NomePacienteConvenio?: string;
+        Inativo?: boolean;
+        DataInativo?: string;
+        ImagemCarteirinha?: string;
+        DataCadastro?: string;
+        DataUltimaAtualizacao?: string;
+        Observacao?: string;
+        ConvenioRazaoSocial?: string;
+        ConvenioNomeFantasia?: string;
+    }
+    namespace PacientesConveniosRow {
+        const idProperty = "PacienteConvenioId";
+        const nameProperty = "DescricaoPlano";
+        const localTextPrefix = "Clinica.PacientesConvenios";
+        const lookupKey = "Clinica.PacientesConvenios";
+        namespace Fields {
+            const PacienteConvenioId: string;
+            const PacienteId: string;
+            const ConvenioId: string;
+            const SubConvenioId: string;
+            const ConvenioPrincipal: string;
+            const DescricaoPlano: string;
+            const Carteirinha: string;
+            const DataValidadeCarteirinha: string;
+            const NomePacienteConvenio: string;
+            const Inativo: string;
+            const DataInativo: string;
+            const ImagemCarteirinha: string;
+            const DataCadastro: string;
+            const DataUltimaAtualizacao: string;
+            const Observacao: string;
+            const ConvenioRazaoSocial: string;
+            const ConvenioNomeFantasia: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace PacientesConveniosService {
+        const baseUrl = "Clinica/PacientesConvenios";
+        function Create(request: Serenity.SaveRequest<PacientesConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PacientesConveniosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PacientesConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PacientesConveniosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class PacientesEmissaoNfForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PacientesEmissaoNfForm {
+        PacienteId: Serenity.LookupEditor;
+        NomeResponsavel: Serenity.StringEditor;
+        PessoaJuridica: Serenity.BooleanEditor;
+        CpfResponsavel: Serenity.MaskedEditor;
+        CnpjResponsavel: Serenity.MaskedEditor;
+        EmailNf: Serenity.EmailEditor;
+        Padrao: Serenity.BooleanEditor;
+        TipoEnderecoId: Serenity.LookupEditor;
+        Cep: Serenity.MaskedEditor;
+        Rua: Serenity.StringEditor;
+        Numero: Serenity.StringEditor;
+        Complemento: Serenity.StringEditor;
+        Bairro: Serenity.StringEditor;
+        Cidade: Serenity.StringEditor;
+        CodigoIbgeCidade: Serenity.StringEditor;
+        Estado: Serenity.StringEditor;
+        CodigoIbgeEstado: Serenity.StringEditor;
+        Pais: Serenity.StringEditor;
+        Referencia: Serenity.TextAreaEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface PacientesEmissaoNfRow {
+        PacienteEmissaoNf?: number;
+        PacienteId?: number;
+        NomeResponsavel?: string;
+        PessoaJuridica?: boolean;
+        CpfResponsavel?: string;
+        CnpjResponsavel?: string;
+        EmailNf?: string;
+        Padrao?: boolean;
+        TipoEnderecoId?: number;
+        Rua?: string;
+        Numero?: string;
+        Complemento?: string;
+        Bairro?: string;
+        Cidade?: string;
+        CodigoIbgeCidade?: string;
+        Estado?: string;
+        CodigoIbgeEstado?: string;
+        Pais?: string;
+        Cep?: string;
+        Referencia?: string;
+        PacienteMatricula?: string;
+        Paciente?: string;
+        TipoEndereco?: string;
+        TipoEnderecoPessoaFisica?: boolean;
+        TipoEnderecoOrdem?: number;
+    }
+    namespace PacientesEmissaoNfRow {
+        const idProperty = "PacienteEmissaoNf";
+        const nameProperty = "NomeResponsavel";
+        const localTextPrefix = "Clinica.PacientesEmissaoNf";
+        const lookupKey = "Clinica.PacientesEmissaoNf";
+        namespace Fields {
+            const PacienteEmissaoNf: string;
+            const PacienteId: string;
+            const NomeResponsavel: string;
+            const PessoaJuridica: string;
+            const CpfResponsavel: string;
+            const CnpjResponsavel: string;
+            const EmailNf: string;
+            const Padrao: string;
+            const TipoEnderecoId: string;
+            const Rua: string;
+            const Numero: string;
+            const Complemento: string;
+            const Bairro: string;
+            const Cidade: string;
+            const CodigoIbgeCidade: string;
+            const Estado: string;
+            const CodigoIbgeEstado: string;
+            const Pais: string;
+            const Cep: string;
+            const Referencia: string;
+            const PacienteMatricula: string;
+            const Paciente: string;
+            const TipoEndereco: string;
+            const TipoEnderecoPessoaFisica: string;
+            const TipoEnderecoOrdem: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace PacientesEmissaoNfService {
+        const baseUrl = "Clinica/PacientesEmissaoNf";
+        function Create(request: Serenity.SaveRequest<PacientesEmissaoNfRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PacientesEmissaoNfRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PacientesEmissaoNfRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PacientesEmissaoNfRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PacientesForm {
+        PacienteIdControlMedic: Serenity.IntegerEditor;
+        PacienteIdGestorMedico: Serenity.IntegerEditor;
+        DataCadastro: Serenity.DateTimeEditor;
+        DataUltimaAtualizacao: Serenity.DateTimeEditor;
+        Matricula: Serenity.StringEditor;
+        StatusId: Serenity.LookupEditor;
+        Paciente: Serenity.StringEditor;
+        SexoId: Serenity.LookupEditor;
+        DataNascimento: Serenity.DateEditor;
+        Especial: Serenity.BooleanEditor;
+        Pai: Serenity.StringEditor;
+        Mae: Serenity.StringEditor;
+        Responsavel: Serenity.StringEditor;
+        CNS: Serenity.StringEditor;
+        CarteiraIdentidade: Serenity.StringEditor;
+        CPF: Serenity.MaskedEditor;
+        Observacao: Serenity.TextAreaEditor;
+        DisturbiosAssociados: Serenity.TextAreaEditor;
+        Foto: Serenity.ImageUploadEditor;
+        DataFoto: Serenity.DateEditor;
+        ContatosList: ContatosEditor;
+        EnderecosList: EnderecosEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface PacientesRow {
+        PacienteId?: number;
+        DataCadastro?: string;
+        DataUltimaAtualizacao?: string;
+        Matricula?: string;
+        StatusId?: number;
+        Paciente?: string;
+        Especial?: boolean;
+        Pai?: string;
+        Mae?: string;
+        SexoId?: number;
+        DataNascimento?: string;
+        CNS?: string;
+        CarteiraIdentidade?: string;
+        CPF?: string;
+        Observacao?: string;
+        DisturbiosAssociados?: string;
+        Responsavel?: string;
+        Foto?: string;
+        DataFoto?: string;
+        PacienteIdControlMedic?: number;
+        PacienteIdGestorMedico?: number;
+        ContatosList?: ContatosRow[];
+        EnderecosList?: EnderecosRow[];
+        Sexo?: string;
+        SexoAbreviatura?: string;
+        Status?: string;
+    }
+    namespace PacientesRow {
+        const idProperty = "PacienteId";
+        const nameProperty = "Paciente";
+        const localTextPrefix = "Clinica.Pacientes";
+        const lookupKey = "Clinica.Pacientes";
+        namespace Fields {
+            const PacienteId: string;
+            const DataCadastro: string;
+            const DataUltimaAtualizacao: string;
+            const Matricula: string;
+            const StatusId: string;
+            const Paciente: string;
+            const Especial: string;
+            const Pai: string;
+            const Mae: string;
+            const SexoId: string;
+            const DataNascimento: string;
+            const CNS: string;
+            const CarteiraIdentidade: string;
+            const CPF: string;
+            const Observacao: string;
+            const DisturbiosAssociados: string;
+            const Responsavel: string;
+            const Foto: string;
+            const DataFoto: string;
+            const PacienteIdControlMedic: string;
+            const PacienteIdGestorMedico: string;
+            const ContatosList: string;
+            const EnderecosList: string;
+            const Sexo: string;
+            const SexoAbreviatura: string;
+            const Status: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace PacientesService {
+        const baseUrl = "Clinica/Pacientes";
+        function Create(request: Serenity.SaveRequest<PacientesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PacientesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PacientesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PacientesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class SexoForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface SexoForm {
+        Sexo: Serenity.StringEditor;
+        Abreviatura: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface SexoRow {
+        SexoId?: number;
+        Sexo?: string;
+        Abreviatura?: string;
+    }
+    namespace SexoRow {
+        const idProperty = "SexoId";
+        const nameProperty = "Sexo";
+        const localTextPrefix = "Clinica.Sexo";
+        const lookupKey = "Clinica.Sexo";
+        namespace Fields {
+            const SexoId: string;
+            const Sexo: string;
+            const Abreviatura: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace SexoService {
+        const baseUrl = "Clinica/Sexo";
+        function Create(request: Serenity.SaveRequest<SexoRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<SexoRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<SexoRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SexoRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class StatusForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface StatusForm {
+        Status: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface StatusRow {
+        StatusId?: number;
+        Status?: string;
+    }
+    namespace StatusRow {
+        const idProperty = "StatusId";
+        const nameProperty = "Status";
+        const localTextPrefix = "Clinica.Status";
+        const lookupKey = "Clinica.Status";
+        namespace Fields {
+            const StatusId: string;
+            const Status: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace StatusService {
+        const baseUrl = "Clinica/Status";
+        function Create(request: Serenity.SaveRequest<StatusRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<StatusRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<StatusRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<StatusRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class TiposContatosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface TiposContatosForm {
+        TipoContato: Serenity.StringEditor;
+        PessoaFisica: Serenity.BooleanEditor;
+        Ordem: Serenity.IntegerEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface TiposContatosRow {
+        TipoContatoId?: number;
+        TipoContato?: string;
+        PessoaFisica?: boolean;
+        Ordem?: number;
+    }
+    namespace TiposContatosRow {
+        const idProperty = "TipoContatoId";
+        const nameProperty = "TipoContato";
+        const localTextPrefix = "Clinica.TiposContatos";
+        const lookupKey = "Clinica.TiposContatos";
+        namespace Fields {
+            const TipoContatoId: string;
+            const TipoContato: string;
+            const PessoaFisica: string;
+            const Ordem: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace TiposContatosService {
+        const baseUrl = "Clinica/TiposContatos";
+        function Create(request: Serenity.SaveRequest<TiposContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TiposContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TiposContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TiposContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class TiposEnderecosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface TiposEnderecosForm {
+        TipoEndereco: Serenity.StringEditor;
+        PessoaFisica: Serenity.BooleanEditor;
+        Ordem: Serenity.IntegerEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface TiposEnderecosRow {
+        TipoEnderecoId?: number;
+        TipoEndereco?: string;
+        PessoaFisica?: boolean;
+        Ordem?: number;
+    }
+    namespace TiposEnderecosRow {
+        const idProperty = "TipoEnderecoId";
+        const nameProperty = "TipoEndereco";
+        const localTextPrefix = "Clinica.TiposEnderecos";
+        const lookupKey = "Clinica.TiposEnderecos";
+        namespace Fields {
+            const TipoEnderecoId: string;
+            const TipoEndereco: string;
+            const PessoaFisica: string;
+            const Ordem: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace TiposEnderecosService {
+        const baseUrl = "Clinica/TiposEnderecos";
+        function Create(request: Serenity.SaveRequest<TiposEnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TiposEnderecosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TiposEnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TiposEnderecosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+}
+declare namespace Exemplos.Clinica {
+    class TiposMeiosContatosForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface TiposMeiosContatosForm {
+        TipoMeioContato: Serenity.StringEditor;
+        Mascara: Serenity.StringEditor;
+    }
+}
+declare namespace Exemplos.Clinica {
+    interface TiposMeiosContatosRow {
+        TipoMeioContatoId?: number;
+        TipoMeioContato?: string;
+        Mascara?: string;
+    }
+    namespace TiposMeiosContatosRow {
+        const idProperty = "TipoMeioContatoId";
+        const nameProperty = "TipoMeioContato";
+        const localTextPrefix = "Clinica.TiposMeiosContatos";
+        const lookupKey = "Clinica.TiposMeiosContatos";
+        namespace Fields {
+            const TipoMeioContatoId: string;
+            const TipoMeioContato: string;
+            const Mascara: string;
+        }
+    }
+}
+declare namespace Exemplos.Clinica {
+    namespace TiposMeiosContatosService {
+        const baseUrl = "Clinica/TiposMeiosContatos";
+        function Create(request: Serenity.SaveRequest<TiposMeiosContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TiposMeiosContatosRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TiposMeiosContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TiposMeiosContatosRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Exemplos.Common.Pages {
+    interface UploadResponse extends Serenity.ServiceResponse {
+        TemporaryFile?: string;
+        Size?: number;
+        IsImage?: boolean;
+        Width?: number;
+        Height?: number;
+    }
+}
+declare namespace Exemplos.Common {
+    interface UserPreferenceRetrieveRequest extends Serenity.ServiceRequest {
+        PreferenceType?: string;
+        Name?: string;
+    }
+}
+declare namespace Exemplos.Common {
+    interface UserPreferenceRetrieveResponse extends Serenity.ServiceResponse {
+        Value?: string;
+    }
+}
+declare namespace Exemplos.Common {
+    interface UserPreferenceRow {
+        UserPreferenceId?: number;
+        UserId?: number;
+        PreferenceType?: string;
+        Name?: string;
+        Value?: string;
+    }
+    namespace UserPreferenceRow {
+        const idProperty = "UserPreferenceId";
+        const nameProperty = "Name";
+        const localTextPrefix = "Common.UserPreference";
+        namespace Fields {
+            const UserPreferenceId: string;
+            const UserId: string;
+            const PreferenceType: string;
+            const Name: string;
+            const Value: string;
+        }
+    }
+}
+declare namespace Exemplos.Common {
+    namespace UserPreferenceService {
+        const baseUrl = "Common/UserPreference";
+        function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: Serenity.ServiceResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Update: string;
+            const Retrieve: string;
+        }
+    }
+}
+declare namespace Exemplos.Common {
+    interface UserPreferenceUpdateRequest extends Serenity.ServiceRequest {
+        PreferenceType?: string;
+        Name?: string;
+        Value?: string;
+    }
+}
+declare namespace Exemplos {
+    interface ExcelImportRequest extends Serenity.ServiceRequest {
+        FileName?: string;
+    }
+}
+declare namespace Exemplos {
+    interface ExcelImportResponse extends Serenity.ServiceResponse {
+        Inserted?: number;
+        Updated?: number;
+        ErrorList?: string[];
+    }
+}
+declare namespace Exemplos {
+    interface GetNextNumberRequest extends Serenity.ServiceRequest {
+        Prefix?: string;
+        Length?: number;
+    }
+}
+declare namespace Exemplos {
+    interface GetNextNumberResponse extends Serenity.ServiceResponse {
+        Number?: number;
+        Serial?: string;
+    }
+}
+declare namespace Exemplos.Membership {
+    class ChangePasswordForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ChangePasswordForm {
+        OldPassword: Serenity.PasswordEditor;
+        NewPassword: Serenity.PasswordEditor;
+        ConfirmPassword: Serenity.PasswordEditor;
+    }
+}
+declare namespace Exemplos.Membership {
+    interface ChangePasswordRequest extends Serenity.ServiceRequest {
+        OldPassword?: string;
+        NewPassword?: string;
+        ConfirmPassword?: string;
+    }
+}
+declare namespace Exemplos.Membership {
+    class ForgotPasswordForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ForgotPasswordForm {
+        Email: Serenity.EmailEditor;
+    }
+}
+declare namespace Exemplos.Membership {
+    interface ForgotPasswordRequest extends Serenity.ServiceRequest {
+        Email?: string;
+    }
+}
+declare namespace Exemplos.Membership {
+    class LoginForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface LoginForm {
+        Username: Serenity.StringEditor;
+        Password: Serenity.PasswordEditor;
+    }
+}
+declare namespace Exemplos.Membership {
+    interface LoginRequest extends Serenity.ServiceRequest {
+        Username?: string;
+        Password?: string;
+    }
+}
+declare namespace Exemplos.Membership {
+    class ResetPasswordForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ResetPasswordForm {
+        NewPassword: Serenity.PasswordEditor;
+        ConfirmPassword: Serenity.PasswordEditor;
+    }
+}
+declare namespace Exemplos.Membership {
+    interface ResetPasswordRequest extends Serenity.ServiceRequest {
+        Token?: string;
+        NewPassword?: string;
+        ConfirmPassword?: string;
+    }
+}
+declare namespace Exemplos.Membership {
+    class SignUpForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface SignUpForm {
+        DisplayName: Serenity.StringEditor;
+        Email: Serenity.EmailEditor;
+        ConfirmEmail: Serenity.EmailEditor;
+        Password: Serenity.PasswordEditor;
+        ConfirmPassword: Serenity.PasswordEditor;
+    }
+}
+declare namespace Exemplos.Membership {
+    interface SignUpRequest extends Serenity.ServiceRequest {
+        DisplayName?: string;
+        Email?: string;
+        Password?: string;
+    }
+}
+declare namespace Exemplos {
+    interface ScriptUserDefinition {
+        Username?: string;
+        DisplayName?: string;
+        IsAdmin?: boolean;
+        Permissions?: {
+            [key: string]: boolean;
+        };
+    }
+}
+declare namespace Exemplos.Administration {
+    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: LanguageForm;
+    }
+}
+declare namespace Exemplos.Administration {
+    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof LanguageDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Exemplos.Administration {
+    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: RoleForm;
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Exemplos.Administration {
+    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof RoleDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Exemplos.Administration {
+    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
+        private permissions;
+        constructor(opt: RolePermissionDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface RolePermissionDialogOptions {
+        roleID?: number;
+        title?: string;
+    }
+}
+declare namespace Exemplos.Administration {
+    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private hasChanges;
+        private searchText;
+        private sourceLanguage;
+        private targetLanguage;
+        private targetLanguageKey;
+        constructor(container: JQuery);
+        protected onClick(e: JQueryEventObject, row: number, cell: number): any;
+        protected getColumns(): Slick.Column[];
+        protected createToolbarExtensions(): void;
+        protected saveChanges(language: string): RSVP.Promise<any>;
+        protected onViewSubmit(): boolean;
+        protected getButtons(): Serenity.ToolButton[];
+        protected createQuickSearchInput(): void;
+        protected onViewFilter(item: TranslationItem): boolean;
+        protected usePager(): boolean;
+    }
+}
+declare namespace Exemplos.Administration {
+    class UserDialog extends Serenity.EntityDialog<UserRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getIsActiveProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: UserForm;
+        constructor();
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+        protected afterLoadEntity(): void;
+    }
+}
+declare namespace Exemplos.Administration {
+    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof UserDialog;
+        protected getIdProperty(): string;
+        protected getIsActiveProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Exemplos.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
+}
+declare namespace Exemplos.Administration {
+    class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
+        protected getIdProperty(): string;
+        private searchText;
+        private byParentKey;
+        private rolePermissions;
+        constructor(container: JQuery, opt: PermissionCheckEditorOptions);
+        private getItemGrantRevokeClass(item, grant);
+        private getItemEffectiveClass(item);
+        protected getColumns(): Slick.Column[];
+        setItems(items: PermissionCheckItem[]): void;
+        protected onViewSubmit(): boolean;
+        protected onViewFilter(item: PermissionCheckItem): boolean;
+        private matchContains(item);
+        private getDescendants(item, excludeGroups);
+        protected onClick(e: any, row: any, cell: any): void;
+        private getParentKey(key);
+        protected getButtons(): Serenity.ToolButton[];
+        protected createToolbarExtensions(): void;
+        private getSortedGroupAndPermissionKeys(titleByKey);
+        get_value(): UserPermissionRow[];
+        set_value(value: UserPermissionRow[]): void;
+        get_rolePermissions(): string[];
+        set_rolePermissions(value: string[]): void;
+    }
+    interface PermissionCheckEditorOptions {
+        showRevoke?: boolean;
+    }
+    interface PermissionCheckItem {
+        ParentKey?: string;
+        Key?: string;
+        Title?: string;
+        IsGroup?: boolean;
+        GrantRevoke?: boolean;
+    }
+}
+declare namespace Exemplos.Administration {
+    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
+        private permissions;
+        constructor(opt: UserPermissionDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface UserPermissionDialogOptions {
+        userID?: number;
+        username?: string;
+    }
+}
+declare namespace Exemplos.Administration {
+    class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
+        private searchText;
+        constructor(div: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): any[];
+        protected getTreeItems(): Serenity.CheckTreeItem<any>[];
+        protected onViewFilter(item: any): boolean;
+    }
+}
+declare namespace Exemplos.Administration {
+    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
+        private permissions;
+        constructor(opt: UserRoleDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface UserRoleDialogOptions {
+        userID: number;
+        username: string;
+    }
+}
+declare namespace Exemplos {
+    function JSvalidarCPF(CPF: string): boolean;
+    function JSvalidarCNPJ(CNPJ: any): boolean;
+    /**
+     * Validar CPF no form do Serenity
+     * @param widget: passar o nome do campo para validação
+     * @param uniqueName: Passar o uniqueName do Dialog
+     * @param alert: texto que vai aparecer no HINT do erro
+     * @param text: texto que vai aparecer no ALERT WARNING do erro
+     * @param setfocus: se vai acionar ou não o focus no campo.
+     */
+    function addValidationRule_CPF(widget: Serenity.Widget<any>, VOptions?: addValidationRuleOptions): void;
+    /**
+     * Validar CNPJ no form do Serenity
+     * @param widget: passar o nome do campo para validação
+     * @param uniqueName: Passar o uniqueName do Dialog
+     * @param alert: texto que vai aparecer no HINT do erro
+     * @param text: texto que vai aparecer no ALERT WARNING do erro
+     * @param setfocus: se vai acionar ou não o focus no campo.
+     */
+    function addValidationRule_CNPJ(widget: Serenity.Widget<any>, VOptions?: addValidationRuleOptions): void;
+    interface addValidationRuleOptions {
+        uniqueName?: string;
+        alert?: string;
+        text?: string;
+        setfocus?: boolean;
+    }
+    interface ViaCepData {
+        /**
+         * Para o typescript sem warnings e erros nos dados retornados de https://viacep.com.br/ws/29075590/json
+         */
+        cep: string;
+        logradouro: string;
+        complemento: string;
+        bairro: string;
+        localidade: string;
+        uf: string;
+        unidade: string;
+        ibge: string;
+        gia: string;
+    }
+    /**
+     * O Formulario deve ser passado para que a funcao chamada saiba qual formulario ira preencher.
+     * Esta funcao poderia usar promise e retornar para tratamento diretamente, mas para evitar alguma incompatibilidade em navegadores antigos,
+     * a redundância é feita e passada à função de callback para preenchimento dos campos do formulário.
+     *
+     * @param CEP - string do CEP a ser buscado
+     * @param formulario - Deve ser passado para nao perder a referencia
+     * @param fnRetornoPreenchimento - Funcao para preencher o formulario
+     */
+    function BuscaCEP(CEP: any, formulario: any, fnRetornoPreenchimento: any): void;
+}
+declare namespace Exemplos.Clinica {
+    class ContatosDialog extends Serenity.EntityDialog<ContatosRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ContatosForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Common {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        protected getIdProperty(): string;
+        protected nextId: number;
+        constructor(container: JQuery);
+        protected id(entity: TEntity): any;
+        protected getNextId(): string;
+        protected setNewId(entity: TEntity): void;
+        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
+        protected deleteEntity(id: number): boolean;
+        protected validateEntity(row: TEntity, id: number): boolean;
+        protected setEntities(items: TEntity[]): void;
+        protected getNewEntity(): TEntity;
+        protected getButtons(): Serenity.ToolButton[];
+        protected editItem(entityOrId: any): void;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
+        value: TEntity[];
+        protected getGridCanLoad(): boolean;
+        protected usePager(): boolean;
+        protected getInitialTitle(): any;
+        protected createQuickSearchInput(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ContatosEditor extends Common.GridEditorBase<ContatosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ContatosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        protected _myParentForm: string;
+        myParentForm: string;
+        constructor(container: JQuery);
+        protected getAddButtonCaption(): string;
+        protected initEntityDialog(itemType: string, dialog: ContatosEditorDialog): void;
+        protected validateEntity(row: ContatosRow, id: number): boolean;
+        protected remove_coluna(nomeColuna: string): void;
+    }
+}
+declare namespace Exemplos.Common {
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        protected getIdProperty(): string;
+        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
+        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
+        destroy(): void;
+        protected updateInterface(): void;
+        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
+        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ContatosEditorDialog extends Common.GridEditorDialog<ContatosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: ContatosForm;
+        protected _myParentForm: string;
+        myParentForm: string;
+        updateTitle(): void;
+        constructor();
+        private setMascara(details);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ContatosGrid extends Serenity.EntityGrid<ContatosRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ContatosDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ConveniosDialog extends Serenity.EntityDialog<ConveniosRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ConveniosForm;
+        private loadedState;
+        dialogOpen(): void;
+        afterLoadEntity(): void;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ConveniosEditor extends Common.GridEditorBase<ConveniosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ConveniosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ConveniosEditorDialog extends Common.GridEditorDialog<ConveniosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: ConveniosForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ConveniosGrid extends Serenity.EntityGrid<ConveniosRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ConveniosDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class EnderecosEditor extends Common.GridEditorBase<EnderecosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof EnderecosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        protected getAddButtonCaption(): string;
+        protected validateEntity(row: EnderecosRow, id: number): boolean;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class EnderecosEditorDialog extends Common.GridEditorDialog<EnderecosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: EnderecosForm;
+        protected limpa_formulario_cep(): void;
+        protected preenche_formulario_cep(thisForm: any, dados_cep: ViaCepData): void;
+        protected preenche_formulario_cep_string(info: any): void;
+        updateTitle(): void;
+        constructor();
+    }
+}
+declare namespace Exemplos.Clinica {
+    class EstadosCivisDialog extends Serenity.EntityDialog<EstadosCivisRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: EstadosCivisForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class EstadosCivisEditor extends Common.GridEditorBase<EstadosCivisRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof EstadosCivisEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class EstadosCivisEditorDialog extends Common.GridEditorDialog<EstadosCivisRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: EstadosCivisForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class EstadosCivisGrid extends Serenity.EntityGrid<EstadosCivisRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof EstadosCivisDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ExceptionsDialog extends Serenity.EntityDialog<ExceptionsRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ExceptionsForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ExceptionsEditor extends Common.GridEditorBase<ExceptionsRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ExceptionsEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ExceptionsEditorDialog extends Common.GridEditorDialog<ExceptionsRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: ExceptionsForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class ExceptionsGrid extends Serenity.EntityGrid<ExceptionsRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ExceptionsDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class FornecedoresDialog extends Serenity.EntityDialog<FornecedoresRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: FornecedoresForm;
+        dialogOpen(): void;
+        afterLoadEntity(): void;
+        constructor();
+    }
+}
+declare namespace Exemplos.Clinica {
+    class FornecedoresEditor extends Common.GridEditorBase<FornecedoresRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof FornecedoresEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class FornecedoresEditorDialog extends Common.GridEditorDialog<FornecedoresRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: FornecedoresForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class FornecedoresGrid extends Serenity.EntityGrid<FornecedoresRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof FornecedoresDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesDialog extends Serenity.EntityDialog<PacientesRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PacientesForm;
+        private pacientesconveniosGrid;
+        private pacientesemissaonfGrid;
+        private loadedState;
+        dialogOpen(): void;
+        getValidatorOptions(): JQueryValidation.ValidationOptions;
+        updateTitle(): void;
+        updateInterface(): void;
+        getToolbarButtons(): Serenity.ToolButton[];
+        afterLoadEntity(): void;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
+        loadEntity(entity: PacientesRow): void;
+        onSaveSuccess(response: any): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesGrid extends Serenity.EntityGrid<PacientesRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PacientesDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesConveniosDialog extends Serenity.EntityDialog<PacientesConveniosRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PacientesConveniosForm;
+        dialogOpen(): void;
+        afterLoadEntity(): void;
+        constructor();
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesConveniosEditor extends Common.GridEditorBase<PacientesConveniosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PacientesConveniosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesConveniosEditorDialog extends Common.GridEditorDialog<PacientesConveniosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: PacientesConveniosForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesConveniosGrid extends Serenity.EntityGrid<PacientesConveniosRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PacientesConveniosDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesEmissaoNfDialog extends Serenity.EntityDialog<PacientesEmissaoNfRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PacientesEmissaoNfForm;
+        protected limpa_formulario_cep(): void;
+        protected preenche_formulario_cep(thisForm: any, dados_cep: ViaCepData): void;
+        protected preenche_formulario_cep_string(info: any): void;
+        dialogOpen(): void;
+        getValidatorOptions(): JQueryValidation.ValidationOptions;
+        constructor();
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesEmissaoNfEditor extends Common.GridEditorBase<PacientesEmissaoNfRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PacientesEmissaoNfEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesEmissaoNfEditorDialog extends Common.GridEditorDialog<PacientesEmissaoNfRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: PacientesEmissaoNfForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesEmissaoNfGrid extends Serenity.EntityGrid<PacientesEmissaoNfRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PacientesEmissaoNfDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesPacientesConveniosDialog extends PacientesConveniosDialog {
+        constructor();
+        updateInterface(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesPacientesConveniosGrid extends PacientesConveniosGrid {
+        protected getDialogType(): typeof PacientesPacientesConveniosDialog;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected initEntityDialog(itemType: any, dialog: any): void;
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _PacienteId;
+        PacienteId: number;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesPacientesEmissaoNfDialog extends PacientesEmissaoNfDialog {
+        constructor();
+        updateInterface(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class PacientesPacientesEmissaoNfGrid extends PacientesEmissaoNfGrid {
+        protected getDialogType(): typeof PacientesPacientesEmissaoNfDialog;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected initEntityDialog(itemType: any, dialog: any): void;
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _PacienteId;
+        PacienteId: number;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class SexoDialog extends Serenity.EntityDialog<SexoRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: SexoForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class SexoEditor extends Common.GridEditorBase<SexoRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof SexoEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class SexoEditorDialog extends Common.GridEditorDialog<SexoRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: SexoForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class SexoGrid extends Serenity.EntityGrid<SexoRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof SexoDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class StatusDialog extends Serenity.EntityDialog<StatusRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: StatusForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class StatusEditor extends Common.GridEditorBase<StatusRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof StatusEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class StatusEditorDialog extends Common.GridEditorDialog<StatusRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: StatusForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class StatusGrid extends Serenity.EntityGrid<StatusRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof StatusDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposContatosDialog extends Serenity.EntityDialog<TiposContatosRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TiposContatosForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposContatosEditor extends Common.GridEditorBase<TiposContatosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TiposContatosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposContatosEditorDialog extends Common.GridEditorDialog<TiposContatosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: TiposContatosForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposContatosGrid extends Serenity.EntityGrid<TiposContatosRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TiposContatosDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposEnderecosDialog extends Serenity.EntityDialog<TiposEnderecosRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TiposEnderecosForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposEnderecosEditor extends Common.GridEditorBase<TiposEnderecosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TiposEnderecosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposEnderecosEditorDialog extends Common.GridEditorDialog<TiposEnderecosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: TiposEnderecosForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposEnderecosGrid extends Serenity.EntityGrid<TiposEnderecosRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TiposEnderecosDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposMeiosContatosDialog extends Serenity.EntityDialog<TiposMeiosContatosRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TiposMeiosContatosForm;
+        dialogOpen(): void;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposMeiosContatosEditor extends Common.GridEditorBase<TiposMeiosContatosRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TiposMeiosContatosEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposMeiosContatosEditorDialog extends Common.GridEditorDialog<TiposMeiosContatosRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: TiposMeiosContatosForm;
+    }
+}
+declare namespace Exemplos.Clinica {
+    class TiposMeiosContatosGrid extends Serenity.EntityGrid<TiposMeiosContatosRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TiposMeiosContatosDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.LanguageList {
+    function getValue(): string[][];
+}
+declare namespace Exemplos.ScriptInitialization {
+}
+declare namespace Exemplos {
+    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
+        constructor();
+        cancelled: boolean;
+        max: number;
+        value: number;
+        title: string;
+        cancelTitle: string;
+        getDialogOptions(): JQueryUI.DialogOptions;
+        initDialog(): void;
+        getTemplate(): string;
+    }
+}
+declare namespace Exemplos.Common {
+    class BulkServiceAction {
+        protected keys: string[];
+        protected queue: string[];
+        protected queueIndex: number;
+        protected progressDialog: BasicProgressDialog;
+        protected pendingRequests: number;
+        protected completedRequests: number;
+        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
+        private successCount;
+        private errorCount;
+        done: () => void;
+        protected createProgressDialog(): void;
+        protected getConfirmationFormat(): string;
+        protected getConfirmationMessage(targetCount: any): string;
+        protected confirm(targetCount: any, action: any): void;
+        protected getNothingToProcessMessage(): string;
+        protected nothingToProcess(): void;
+        protected getParallelRequests(): number;
+        protected getBatchSize(): number;
+        protected startParallelExecution(): void;
+        protected serviceCallCleanup(): void;
+        protected executeForBatch(batch: string[]): void;
+        protected executeNextBatch(): void;
+        protected getAllHadErrorsFormat(): string;
+        protected showAllHadErrors(): void;
+        protected getSomeHadErrorsFormat(): string;
+        protected showSomeHadErrors(): void;
+        protected getAllSuccessFormat(): string;
+        protected showAllSuccess(): void;
+        protected showResults(): void;
+        execute(keys: string[]): void;
+        get_successCount(): any;
+        set_successCount(value: number): void;
+        get_errorCount(): any;
+        set_errorCount(value: number): void;
+    }
+}
+declare namespace Exemplos.DialogUtils {
+    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+}
+declare namespace Exemplos.Common {
+    class EnumSelectFormatter implements Slick.Formatter {
+        constructor();
+        format(ctx: Slick.FormatterContext): string;
+        enumKey: string;
+        allowClear: boolean;
+        emptyItemText: string;
+    }
+}
+declare namespace Exemplos.Common {
+    interface ExcelExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        service: string;
+        onViewSubmit: () => boolean;
+        title?: string;
+        hint?: string;
+        separator?: boolean;
+    }
+    namespace ExcelExportHelper {
+        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Exemplos.Common {
+    class LanguageSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery, currentLanguage: string);
+    }
+}
+declare namespace Exemplos.Common {
+    class SidebarSearch extends Serenity.Widget<any> {
+        private menuUL;
+        constructor(input: JQuery, menuUL: JQuery);
+        protected updateMatchFlags(text: string): void;
+    }
+}
+declare namespace Exemplos.Common {
+    class ThemeSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery);
+        protected getCurrentTheme(): string;
+    }
+}
+declare var jsPDF: any;
+declare namespace Exemplos.Common {
+    interface PdfExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        onViewSubmit: () => boolean;
+        title?: string;
+        hint?: string;
+        separator?: boolean;
+        reportTitle?: string;
+        titleTop?: number;
+        titleFontSize?: number;
+        fileName?: string;
+        pageNumbers?: boolean;
+        columnTitles?: {
+            [key: string]: string;
+        };
+        tableOptions?: jsPDF.AutoTableOptions;
+        output?: string;
+        autoPrint?: boolean;
+        printDateTimeHeader?: boolean;
+    }
+    namespace PdfExportHelper {
+        function exportToPdf(options: PdfExportOptions): void;
+        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare var jsPDF: any;
+declare namespace Exemplos.Common {
+    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
+        private report;
+        private propertyGrid;
+        constructor(options: ReportDialogOptions);
+        protected getDialogButtons(): any;
+        protected createPropertyGrid(): void;
+        protected loadReport(reportKey: string): void;
+        protected updateInterface(): void;
+        executeReport(target: string, ext: string, download: boolean): void;
+        getToolbarButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+    }
+    interface ReportDialogOptions {
+        reportKey: string;
+    }
+}
+declare namespace Exemplos.Common {
+    interface ReportExecuteOptions {
+        reportKey: string;
+        download?: boolean;
+        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
+        getParams?: () => any;
+        params?: {
+            [key: string]: any;
+        };
+        target?: string;
+    }
+    interface ReportButtonOptions extends ReportExecuteOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+        function execute(options: ReportExecuteOptions): void;
+    }
+}
+declare var jsPDF: any;
+declare namespace Exemplos.Common {
+    class ReportPage extends Serenity.Widget<any> {
+        private reportKey;
+        private propertyItems;
+        private propertyGrid;
+        constructor(element: JQuery);
+        protected updateMatchFlags(text: string): void;
+        protected categoryClick(e: any): void;
+        protected reportLinkClick(e: any): void;
+    }
+}
+declare namespace Exemplos.Common {
+    class UserPreferenceStorage implements Serenity.SettingStorage {
+        getItem(key: string): string;
+        setItem(key: string, data: string): void;
+    }
+}
+declare namespace Exemplos {
+    class LKCodeDescr extends Serenity.LookupEditorBase<LKCodeDescOptions, any> {
+        constructor(container: JQuery, opt?: LKCodeDescOptions);
+        getSelect2Options(): Select2Options;
+        protected myFormatSelection(item: Serenity.Select2Item): string;
+        protected myFormatResult(item: Serenity.Select2Item): string;
+    }
+    interface LKCodeDescOptions extends Serenity.LookupEditorOptions {
+        codeName: string;
+        descrName: string;
+    }
+}
+declare namespace Exemplos.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Membership {
+    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Membership {
+    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Membership {
+    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Exemplos.Membership {
+    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
     }
 }
